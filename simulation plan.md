@@ -3,7 +3,7 @@ Here’s a structured plan for adding interactive simulations to each worksheet 
 
 ---
 
-Interactive Simulation Plan for CP0539 Worksheets
+Interactive Simulation Plan for CP2388 Worksheets
 
 Industrial Maintenance of PLC Fundamentals Systems
 
@@ -142,14 +142,14 @@ Worksheet 14 – Faults
 
 ---
 
-Here is the interactive simulation plan for CP6773 – Troubleshooting & Fault-Finding PLC Fundamentals Systems.
+Here is the interactive simulation plan for CP2388 – Industrial Maintenance PLC Fundamentals Systems.
 
 This curriculum focuses on applying diagnostics in realistic fault scenarios. Each scenario should simulate industrial maintenance conditions where alarms are disabled, encouraging learners to use the IO screen, HMI mimic, and logical deduction.
 
 
 ---
 
-Interactive Simulation Plan for CP6773 Scenarios
+Interactive Simulation Plan for CP2388 Scenarios
 
 Troubleshooting & Fault-Finding PLC Fundamentals Systems
 
@@ -206,7 +206,7 @@ Consistent Toolset: IO screen, HMI mimic, fault injection, and manual resets are
 
 Redundancy & Safety Themes: E-Stop channels, sensor fail-safes, and cut-out logic are well-covered — critical for industrial learners.
 
-🔧 Targeted Recommendations (CP0539)
+🔧 Targeted Recommendations (CP2388)
 Worksheet 1 – PLC Fundamentals
 ✅ Good.
 
@@ -277,7 +277,7 @@ Worksheet 14 – Faults
 
 ✅ Suggestion: Add "report writing" module where learner generates fault report (timestamp, symptom, diagnosis, resolution).
 
-🔧 CP6773 Suggestions (Fault-Finding)
+🔧 CP2388 Suggestions (Maintenance)
 Overall, excellent structure. Each one works well with IO and signal-tracing. Consider these enhancements:
 
 Global Enhancements

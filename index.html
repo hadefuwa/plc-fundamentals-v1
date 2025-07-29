@@ -394,8 +394,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" onclick="window.location='cp0539-worksheets.html'" class="nav-link">
-            <i class="fas fa-cogs"></i> CP0539
+          <a href="#" onclick="window.location='CP2388-worksheets.html'" class="nav-link">
+            <i class="fas fa-cogs"></i> CP2388
           </a>
         </li>
 
@@ -425,62 +425,101 @@
         <!-- LEFT SIDE - CURRICULUM -->
         <div class="side-content">
             <h2 class="side-header curriculum">CURRICULUM</h2>
-            <img src="assets/cad.png" alt="CAD Diagram 1" class="cad-image">
+            <div class="curriculum-hero">
+                <img src="assets/cad.png" alt="CAD Diagram 1" class="cad-image">
+                <div class="curriculum-info">
+                    <h3>PLC Fundamentals</h3>
+                    <p>Master PLC fundamentals through comprehensive training modules.</p>
+                    <div class="curriculum-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">14</span>
+                            <span class="stat-label">Worksheets</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Modules</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="button-container">
-
-                <a href="#" class="side-button" onclick="openPDF('docs/CP0539 - Industrial Maintenance of PLC Fundamentals Systems.pdf')">
+                <a href="#" class="side-button primary" onclick="openPDF('docs/CP2388 – PLC Fundamentals for Maintenance Engineers.pdf')">
                     <i class="fas fa-cogs"></i>
-                    <span class="button-text">Industrial Maintenance</span>
-                    <small>(CP0539)</small>
+                    <span class="button-text">PLC Fundamentals</span>
+                    <small>(CP2388)</small>
+                </a>
+                <a href="#" class="side-button secondary" onclick="window.location='cp2388-worksheets.html'">
+                    <i class="fas fa-play"></i>
+                    <span class="button-text">Start Training</span>
+                    <small>Interactive Worksheets</small>
                 </a>
             </div>
         </div>
 
         <!-- CENTER CONTENT -->
         <div class="center-content">
-            <h2 class="center-title">Industrial Maintenance</h2>
-            <p class="center-subtitle">
-                Comprehensive training platform for industrial maintenance technicians. 
-                Master closed-loop control systems through interactive worksheets and real-world scenarios.
-            </p>
-            
-            <button onclick="installPWA()" class="pwa-install-button" style="margin-bottom: 20px;">
-                <i class="fas fa-download"></i> Install Matrix IM6390 App
-            </button>
-            
-            <div style="background: rgba(74, 158, 255, 0.1); border: 1px solid #4a9eff; border-radius: 8px; padding: 15px; margin: 20px 0; color: #ffffff;">
-                <h4 style="margin: 0 0 10px 0; color: #4a9eff;"><i class="fas fa-info-circle"></i> Full Screen Tip</h4>
-                <p style="margin: 0; font-size: 14px; line-height: 1.4;">
-                    After installing the app, you can maximize the window for a full-screen experience. 
-                    Click the maximize button in the title bar or press <kbd>F11</kbd> for true fullscreen mode.
+            <div class="hero-section">
+                <h2 class="center-title">PLC Fundamentals</h2>
+                <p class="center-subtitle">
+                    Comprehensive training platform for maintenance engineers. 
+                    Master PLC fundamentals through interactive worksheets and real-world scenarios.
                 </p>
+                
+                <div class="hero-actions">
+                    <button onclick="installPWA()" class="pwa-install-button hero-btn">
+                        <i class="fas fa-download"></i> Install Matrix IM6930 App
+                    </button>
+                    <a href="cp2388-worksheets.html" class="start-training-btn hero-btn">
+                        <i class="fas fa-play"></i> Start Training
+                    </a>
+                </div>
             </div>
             
-            <div class="curriculum-grid">
-                <div class="curriculum-card" onclick="window.location='cp0539-worksheets.html'">
+            <div class="features-section">
+                <div class="feature-card">
                     <i class="fas fa-cogs"></i>
-                    <h3>CP0539 - Industrial Maintenance</h3>
-                    <p>14 comprehensive worksheets covering control systems, emergency stops, PLC maintenance, and more.</p>
+                    <h3>Control Systems</h3>
+                    <p>Learn PLC programming, emergency stops, and system integration.</p>
                 </div>
-                
-
+                <div class="feature-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Maintenance Procedures</h3>
+                    <p>Master preventive maintenance and troubleshooting techniques.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Performance Tracking</h3>
+                    <p>Monitor your progress with detailed analytics and assessments.</p>
+                </div>
+            </div>
+            
+            <div class="info-tip">
+                <h4><i class="fas fa-info-circle"></i> Full Screen Experience</h4>
+                <p>After installing the app, maximize the window for an immersive training experience. 
+                Click the maximize button or press <kbd>F11</kbd> for true fullscreen mode.</p>
             </div>
         </div>
 
         <!-- RIGHT SIDE - DOCUMENTATION -->
         <div class="side-content">
             <h2 class="side-header documentation">DOCUMENTATION</h2>
-            <img src="assets/cad2.png" alt="CAD Diagram 2" class="cad-image">
+            <div class="docs-hero">
+                <img src="assets/cad2.png" alt="CAD Diagram 2" class="cad-image">
+                <div class="docs-info">
+                    <h3>Technical Resources</h3>
+                    <p>Access comprehensive documentation and technical specifications.</p>
+                </div>
+            </div>
             <div class="button-container">
-                <a href="#" class="side-button" onclick="openPDF('docs/IM6390 - Maintenance of PLC Fundamentals Systems User Manual.pdf')">
+                <a href="#" class="side-button primary" onclick="openPDF('docs/IM6930 - PLC Fundamentals Trainer User Manual.pdf')">
                     <i class="fas fa-book"></i>
                     <span class="button-text">User Manual</span>
-                    <small>(IM6390)</small>
+                    <small>(IM6930)</small>
                 </a>
-                <a href="#" class="side-button" onclick="openPDF('docs/IM6390 Electrical Drawings RevG.pdf')">
+                <a href="#" class="side-button secondary" onclick="openPDF('docs/IM6930 Electrical Drawings Rev5.pdf')">
                     <i class="fas fa-bolt"></i>
                     <span class="button-text">Electrical Drawings</span>
-                    <small>(RevG)</small>
+                    <small>(Rev5)</small>
                 </a>
             </div>
         </div>

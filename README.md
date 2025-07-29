@@ -82,13 +82,13 @@ A comprehensive Progressive Web Application (PWA) for industrial maintenance tra
 ## 📋 System Structure
 
 ### 📚 Training Modules
-- **CP0539**: Industrial Maintenance Worksheets
+- **CP2388**: Industrial Maintenance Worksheets
   - System Components
   - Maintenance Procedures
   - Safety Protocols
   - Troubleshooting Guides
 
-- **CP6773**: Fault-Finding Scenarios
+
   - Real-world Problems
   - Interactive Diagnostics
   - Solution Validation

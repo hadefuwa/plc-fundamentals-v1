@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This document details the implementation of a comprehensive worksheet tracking and export system for the Matrix TSL educational platform. The system tracks student progress across 14 maintenance worksheets and 8 fault scenarios, providing detailed analytics and export functionality for teachers.
+This document details the implementation of a comprehensive worksheet tracking and export system for the Matrix TSL educational platform. The system tracks student progress across 14 maintenance worksheets, providing detailed analytics and export functionality for teachers.
 
 ## Implementation Summary
 
@@ -38,8 +38,7 @@ This document details the implementation of a comprehensive worksheet tracking a
 class WorksheetTracker {
   constructor() {
     this.worksheets = {
-      maintenance: [/* 14 worksheets */],
-      fault: [/* 8 scenarios */]
+      maintenance: [/* 14 worksheets */]
     };
   }
   
@@ -56,7 +55,7 @@ class WorksheetTracker {
 ```
 
 **Key Features:**
-- Manages 22 total worksheets (14 maintenance + 8 fault)
+- Manages 14 total worksheets (maintenance only)
 - Stores answers, timestamps, and metadata
 - Calculates completion percentages automatically
 - Provides multiple export formats
@@ -79,7 +78,7 @@ worksheet-{type}-{id}-metadata: {
 
 // Overall progress
 worksheet-overall-progress: {
-  totalWorksheets: 22,
+  totalWorksheets: 14,
   completedWorksheets: number,
   totalQuestions: number,
   completedQuestions: number,

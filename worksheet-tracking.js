@@ -539,7 +539,7 @@ class WorksheetTracker {
         </div>
         
         <div class="progress-section">
-          <h2>Maintenance Worksheets (CP0539)</h2>
+          <h2>Maintenance Worksheets (CP2388)</h2>
           <div class="worksheet-grid">
             ${this.worksheets.maintenance.map(worksheet => {
               const progress = worksheets[`maintenance-${worksheet.id}`];

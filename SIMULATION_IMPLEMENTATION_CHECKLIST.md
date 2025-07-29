@@ -2,7 +2,7 @@
 ## Industrial Maintenance Training System
 
 ### 📋 **Implementation Overview**
-- **Total Worksheets**: 14 (CP0539) + 5 Scenarios (CP6773)
+- **Total Worksheets**: 14 (CP2388)
 - **Implementation Phases**: 4 phases over 8-12 weeks
 - **Priority**: High (Industrial Maintenance Focus)
 - **Technology Stack**: HTML5, JavaScript, Chart.js, Canvas API
@@ -627,7 +627,7 @@
 
 ## 🚀 **PHASE 4: Advanced Scenarios & Integration (Weeks 10-12)**
 
-### **CP6773 Scenarios Implementation**
+### **Advanced Maintenance Scenarios Implementation**
 
 #### **Scenario 1: Titanium Forging**
 - [ ] Cold start condition simulation
@@ -806,7 +806,7 @@
 | Phase 1 | Weeks 1-3 | 1-3 | Core systems, PID, E-stops, LEDs |
 | Phase 2 | Weeks 4-6 | 4-7 | PLC, HMI, Pump, Valve |
 | Phase 3 | Weeks 7-9 | 8-13 | All sensor systems |
-| Phase 4 | Weeks 10-12 | 14 + CP6773 | Fault scenarios, integration |
+| Phase 4 | Weeks 10-12 | 14 | Advanced maintenance scenarios, integration |
 
 **Total Estimated Time**: 12 weeks
 **Total Worksheets**: 19 (14 + 5 scenarios)

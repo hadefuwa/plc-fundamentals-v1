@@ -65,8 +65,8 @@
 1. **`manifest.json`** - Uses `"display": "fullscreen"` for true fullscreen
 2. **`manifest-standalone.json`** - Alternative with `"display": "standalone"`
 3. **`index.html`** - Added fullscreen exit button and functionality
-4. **`cp0539-worksheets.html`** - Added fullscreen exit button and functionality
-5. **`cp6773-worksheets.html`** - Added fullscreen exit button and functionality
+4. **`CP2388-worksheets.html`** - Added fullscreen exit button and functionality
+
 6. **`PWA_FULLSCREEN_FIX.md`** - Updated documentation
 
 ## Exit Button Implementation

@@ -6,7 +6,7 @@ const CORE_ASSETS = [
   './',
   './index.html',
   './about.html',
-  './cp0539-worksheets.html',
+  './cp2388-worksheets.html',
   
   './main.css',
   './manifest.json',

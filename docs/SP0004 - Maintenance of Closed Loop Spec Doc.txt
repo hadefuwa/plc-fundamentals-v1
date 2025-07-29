@@ -2,7 +2,7 @@
 Name: Maintenance of PLC Fundamentals Systems: Flow 
 Product Range:  Industrial Maintenance 
 Product Code: IM6390 
-Curriculum Code: CP0539 & CP6773
+Curriculum Code: CP2388 & CP6773
 Power Supply: 24V 
 Unit weight 
  
@@ -74,7 +74,7 @@ Build competence and confidence in performing system inspections, interpreting v
 
 
 Worksheets 
-CP0539
+CP2388
 * Worksheet 1 � Closed-Loop Control Systems 
 * Worksheet 2 � Emergency Stops 
 * Worksheet 3 � Status LED 
@@ -108,7 +108,7 @@ Contents;
 
 Curriculum(s)
 This product comes with two curriculums;
-CP0539 � Industrial Maintenance of PLC Fundamentals Systems
+CP2388 � Industrial Maintenance of PLC Fundamentals Systems
 CP6773 - Troubleshooting & Fault-Finding PLC Fundamentals Systems
 
 

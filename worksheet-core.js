@@ -8,7 +8,7 @@ function getUrlParameter(name) {
 }
 
 function getWorksheetsPageUrl() {
-  return 'cp0539-worksheets.html';
+  return 'CP2388-worksheets.html';
 }
 
 function goBackToWorksheets() {
