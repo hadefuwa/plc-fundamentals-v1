@@ -16,7 +16,7 @@ Gross Weight: TBC
 Width: 43.5cm 
 Height: 46.1cm 
 Product Description 
-The Industrial Maintenance PLC Fundamentals PID Control System (Model IM0004) is a hands-on industrial training solution designed to teach fault diagnosis, system behaviour analysis, and component-level troubleshooting in a real-world flow control environment.
+The Industrial Maintenance PLC Fundamentals PID Control System (Model IM6390) is a hands-on industrial training solution designed to teach fault diagnosis, system behaviour analysis, and component-level troubleshooting in a real-world flow control environment.
 It includes a Siemens S7-1200 PLC, Unified Basic HMI, turbine flow sensor, proportional control valve, analogue flow gauge, IFM temperature sensor, float switches, and a proximity sensor, simulating industrial process equipment. Learners engage with hands-on experiments involving general system use and fault simulation, and sensor validation. 
 The system operates via a closed-loop feedback structure: the PLC adjusts both the valve and pump output using a PID algorithm to maintain a target flow rate, with real-time sensor feedback displayed on the HMI. The product includes a full curriculum of guided worksheets focused on closed-loop control theory, component diagnostics, and fault scenarios.
 Target Audience
@@ -101,7 +101,7 @@ CP6773
 Packing List
 Essentially the product will be sold as almost one complete tested unit.
 Contents;
-- IM0004: Base with PLC and tank installed.
+- IM6390: Base with PLC and tank installed.
 - The variable flow indicator will be shipped unscrewed, for the customer to attach by hand upon delivery. No tools required.
 
 
@@ -208,7 +208,7 @@ The product includes a standard 12-month warranty with full technical support fr
 
 
 Tender Specification 
-Matrix Technology Solutions Ltd shall supply the Industrial Maintenance PLC Fundamentals PID Control System (Model IM0004) with the following features, capabilities, and performance assurances:
+Matrix Technology Solutions Ltd shall supply the Industrial Maintenance PLC Fundamentals PID Control System (Model IM6390) with the following features, capabilities, and performance assurances:
 Hardware Specification
 * The system shall include an integrated closed-loop water tank with a capacity of approximately 3.5�4.5 litres, suitable for desk-based educational environments.
 * The system shall be constructed using a powder-coated steel frame with corrosion-resistant plumbing and transparent acrylic flow and level indicators.
@@ -259,7 +259,7 @@ o Global 24V DC power supply
 
 
 Electrical Safety Information
-The Industrial Maintenance PLC Fundamentals PID Control System (Model IM0004) is designed with safety in mind and complies with relevant low-voltage and EMC standards. Users must adhere to the following safety guidance to ensure safe and correct operation.
+The Industrial Maintenance PLC Fundamentals PID Control System (Model IM6390) is designed with safety in mind and complies with relevant low-voltage and EMC standards. Users must adhere to the following safety guidance to ensure safe and correct operation.
 Key Safety Notes
 * Low Voltage Operation:
 The system operates at 24V DC only. It does not require or tolerate direct connection to mains voltage. Doing so will result in damage and void the warranty.

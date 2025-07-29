@@ -565,7 +565,7 @@ class WorksheetTracker {
         </div>
         
         <div class="progress-section">
-          <h2>Fault Scenarios (CP6773)</h2>
+          
           <div class="worksheet-grid">
             ${this.worksheets.fault.map(worksheet => {
               const progress = worksheets[`fault-${worksheet.id}`];

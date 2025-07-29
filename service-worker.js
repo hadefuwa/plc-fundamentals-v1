@@ -7,7 +7,7 @@ const CORE_ASSETS = [
   './index.html',
   './about.html',
   './cp0539-worksheets.html',
-  './cp6773-worksheets.html',
+  
   './main.css',
   './manifest.json',
   './assets/matrix-logo.png',
