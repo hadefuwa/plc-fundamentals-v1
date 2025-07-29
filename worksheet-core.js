@@ -1,3 +1,206 @@
+// Worksheet Core Functionality
+const worksheetAnswers = {
+  1: {  // Simple PLC Control Systems
+    1: { answer: "A", text: "Simple on/off control using push buttons and indicator lights" },
+    2: { answer: "C", text: "The red light turns on while the button is pressed, then turns off when released" },
+    3: { answer: "D", text: "They show which inputs and outputs are active, based on the PLC logic" },
+    4: { answer: "D", text: "In factories to control devices like lights, fans, or alarms" }
+  },
+  2: {  // Complex PLC Control Systems
+    1: { answer: "A", text: "It controls step-by-step processes using inputs, outputs, and logic, like in real factory systems" },
+    2: { answer: "B", text: "The outputs turn on one by one in a sequence, even after you release the button" },
+    3: { answer: "A", text: "The PLC stores the input signal in memory, so the process keeps running without holding the button" },
+    4: { answer: "C", text: "By pressing the red stop button (I2) or the emergency stop" },
+    5: { answer: "A", text: "Because most real systems are complex, and you need to know how the program works to fix problems" }
+  },
+  3: {  // HMIs
+    1: { answer: "A", text: "An HMI lets operators view system status and send commands to the PLC" },
+    2: { answer: "B", text: "It shows a batch mixing process with ingredient tanks and a final product tank" },
+    3: { answer: "C", text: "The three tanks drain into the bottom tank, and controls are locked until mixing finishes" },
+    4: { answer: "A", text: "To prevent changes during critical parts of the process, keeping the system safe" },
+    5: { answer: "B", text: "They use it to check inputs, outputs, alarms, and test system behaviour" }
+  },
+  4: {  // Emergency Stops
+    1: { answer: "A", text: "To stop the machine immediately in an emergency to keep people safe and protect equipment" },
+    2: { answer: "B", text: "An E-Stop is only for emergencies, not for normal stopping or shutdown" },
+    3: { answer: "C", text: "The system stops, an alarm appears, and mixing is halted until reset" },
+    4: { answer: "A", text: "For safety. If either contact opens, the system stops. This makes the E-Stop more reliable" },
+    5: { answer: "B", text: "Twist the E-Stop to release it, then press the blue reset button or use the HMI reset" }
+  },
+  5: {  // Status LED
+    1: { answer: "A", text: "It shows the current state of the system using colours, helping identify faults or normal operation" },
+    2: { answer: "B", text: "It often means there is a fault or the emergency stop has been pressed" },
+    3: { answer: "C", text: "It usually means the system is healthy and ready or running normally" },
+    4: { answer: "A", text: "It may show solid or flashing patterns based on system state, like startup, running, or fault" },
+    5: { answer: "B", text: "Because LED behaviour is set in the PLC code and can vary between machines, so reading the manual and understanding the logic is key" }
+  },
+  6: {  // Normally Open vs Normally Closed
+    1: { answer: "A", text: "An NO contact is off until pressed, while an NC contact is on until pressed" },
+    2: { answer: "B", text: "Green means the input is currently on; white means it is off" },
+    3: { answer: "C", text: "It stays on by default and turns off when the red button is pressed" },
+    4: { answer: "A", text: "It latches on when pressed and stays on until pressed again" },
+    5: { answer: "B", text: "So you can correctly read input states and avoid misdiagnosing faults" }
+  },
+  7: {  // Proximity Switch
+    1: { answer: "A", text: "It detects the presence of an object without physical contact" },
+    2: { answer: "B", text: "They improve safety and reduce wear by detecting position without touching the object" },
+    3: { answer: "C", text: "Metal objects only" },
+    4: { answer: "A", text: "The system couldn't detect the locking pins because the sensor was not triggered" },
+    5: { answer: "B", text: "By placing a metal object in front of the sensor to simulate detection" }
+  },
+  8: {  // Potentiometer
+    1: { answer: "A", text: "It creates a variable voltage signal used to control things like motor speed or level settings" },
+    2: { answer: "B", text: "Between 0 and 10 volts" },
+    3: { answer: "C", text: "The motor speed increases as the potentiometer is turned to the right" },
+    4: { answer: "A", text: "It shifts the signal higher or lower to correct for drift or to fine-tune control" },
+    5: { answer: "B", text: "It adjusts the signal to match real-world values, ensuring the system behaves as expected" }
+  },
+  9: {  // Temperature Sensor
+    1: { answer: "A", text: "It tracks heat levels to help prevent overheating, freezing, or system faults" },
+    2: { answer: "B", text: "A PT100 RTD sensor" },
+    3: { answer: "C", text: "Because the PLC can't read resistance directly—it needs a 0–10V voltage signal" },
+    4: { answer: "A", text: "It converts the voltage into a raw value, then multiplies it by a scalar to get temperature in °C" },
+    5: { answer: "B", text: "It usually means a fault like a disconnected sensor, wrong input type, or wiring issue" }
+  },
+  10: {  // Digital Outputs
+    1: { answer: "A", text: "To control external devices like lights, motors, relays, and solenoids" },
+    2: { answer: "B", text: "LED Q0 turns on only while the button is pressed" },
+    3: { answer: "C", text: "LED Q1 stays on after the button is released until turned off by I2" },
+    4: { answer: "A", text: "It changes the behaviour of LED Q3. Left keeps it on, right makes it flash" },
+    5: { answer: "B", text: "Because real systems often use sequences and recognising them helps with fault finding and confirming correct operation" }
+  },
+  11: {  // Motor PWM
+    1: { answer: "A", text: "PWM stands for Pulse Width Modulation, and it is used to control motor speed" },
+    2: { answer: "B", text: "It changes how long the output is on versus off, controlling how much power the motor receives" },
+    3: { answer: "C", text: "It sets the PWM level by sending a 0-10V signal to the PLC" },
+    4: { answer: "A", text: "100% means the motor is fully on, and 0% means it is off" },
+    5: { answer: "B", text: "Because many real systems use PWM to control speed, and being able to read and adjust it helps with troubleshooting and setup" }
+  },
+  12: {  // Motor Relay
+    1: { answer: "A", text: "To safely control higher-power devices like motors or solenoids" },
+    2: { answer: "B", text: "By sending power to a coil inside the relay" },
+    3: { answer: "C", text: "The relay closes internal contacts to switch the connected output on" },
+    4: { answer: "A", text: "Because PLC outputs are low-power and need a relay to handle larger loads" },
+    5: { answer: "B", text: "Check for stuck contacts, faulty coils, incorrect logic, or wiring issues" }
+  }
+};
+
+// Answer tracking functionality
+class WorksheetTracker {
+  constructor() {
+    this.loadProgress();
+  }
+
+  // Load saved progress from localStorage
+  loadProgress() {
+    try {
+      this.progress = JSON.parse(localStorage.getItem('worksheetProgress')) || {};
+    } catch (error) {
+      console.error('Error loading progress:', error);
+      this.progress = {};
+    }
+  }
+
+  // Save progress to localStorage
+  saveProgress() {
+    try {
+      localStorage.setItem('worksheetProgress', JSON.stringify(this.progress));
+    } catch (error) {
+      console.error('Error saving progress:', error);
+    }
+  }
+
+  // Save an answer for a specific question
+  saveAnswer(worksheetNumber, questionNumber, answer) {
+    const worksheetKey = `worksheet_${worksheetNumber}`;
+    if (!this.progress[worksheetKey]) {
+      this.progress[worksheetKey] = {
+        answers: {},
+        lastUpdated: new Date().toISOString()
+      };
+    }
+
+    this.progress[worksheetKey].answers[questionNumber] = {
+      answer: answer,
+      timestamp: new Date().toISOString()
+    };
+
+    this.progress[worksheetKey].lastUpdated = new Date().toISOString();
+    this.saveProgress();
+  }
+
+  // Get the correct answer for a question
+  getCorrectAnswer(worksheetNumber, questionNumber) {
+    return worksheetAnswers[worksheetNumber]?.[questionNumber]?.answer;
+  }
+
+  // Get the explanation for a question's answer
+  getAnswerExplanation(worksheetNumber, questionNumber) {
+    return worksheetAnswers[worksheetNumber]?.[questionNumber]?.text;
+  }
+
+  // Check if an answer is correct
+  isAnswerCorrect(worksheetNumber, questionNumber, answer) {
+    const correctAnswer = this.getCorrectAnswer(worksheetNumber, questionNumber);
+    return correctAnswer === answer;
+  }
+
+  // Get progress for a specific worksheet
+  getWorksheetProgress(worksheetNumber) {
+    const worksheetKey = `worksheet_${worksheetNumber}`;
+    const worksheetData = this.progress[worksheetKey] || { answers: {} };
+    const totalQuestions = Object.keys(worksheetAnswers[worksheetNumber] || {}).length;
+    const answeredQuestions = Object.keys(worksheetData.answers || {}).length;
+    const correctAnswers = Object.entries(worksheetData.answers || {})
+      .filter(([qNum, data]) => this.isAnswerCorrect(worksheetNumber, qNum, data.answer))
+      .length;
+
+    return {
+      totalQuestions,
+      answeredQuestions,
+      correctAnswers,
+      completionPercentage: Math.round((correctAnswers / totalQuestions) * 100),
+      lastUpdated: worksheetData.lastUpdated
+    };
+  }
+
+  // Get overall progress across all worksheets
+  getOverallProgress() {
+    let totalQuestions = 0;
+    let answeredQuestions = 0;
+    let correctAnswers = 0;
+    let lastActivity = null;
+
+    Object.keys(worksheetAnswers).forEach(worksheetNumber => {
+      const progress = this.getWorksheetProgress(worksheetNumber);
+      totalQuestions += progress.totalQuestions;
+      answeredQuestions += progress.answeredQuestions;
+      correctAnswers += progress.correctAnswers;
+
+      if (progress.lastUpdated && (!lastActivity || new Date(progress.lastUpdated) > new Date(lastActivity))) {
+        lastActivity = progress.lastUpdated;
+      }
+    });
+
+    return {
+      totalQuestions,
+      answeredQuestions,
+      correctAnswers,
+      completionPercentage: Math.round((correctAnswers / totalQuestions) * 100),
+      lastActivity
+    };
+  }
+
+  // Clear all progress
+  clearProgress() {
+    this.progress = {};
+    this.saveProgress();
+  }
+}
+
+// Initialize the worksheet tracker
+const worksheetTracker = new WorksheetTracker();
+
 // Worksheet Core JavaScript Functions
 // This file contains the essential functions for loading and rendering worksheets
 

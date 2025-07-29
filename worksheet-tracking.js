@@ -5,31 +5,80 @@ class WorksheetTracker {
   constructor() {
     this.worksheets = {
       maintenance: [
-        { id: 1, title: "Flow Control System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 2, title: "Emergency Stop System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 3, title: "Status LED System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 4, title: "PLC System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 5, title: "HMI System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 6, title: "Pump System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 7, title: "Valve System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 8, title: "Float Switch System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 9, title: "Proximity Switch System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 10, title: "Flow Sensor System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 11, title: "Temperature Sensor System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 12, title: "Digital Sensors System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 13, title: "Analogue Sensors System Maintenance", type: "maintenance", totalQuestions: 5 },
-        { id: 14, title: "Fault Detection & Troubleshooting", type: "maintenance", totalQuestions: 5 }
+        { 
+          id: 1, 
+          title: "Simple PLC Systems",
+          description: "Learn about basic PLC control systems, inputs and outputs, and how a PLC processes simple instructions like turning on a light when a button is pressed.",
+          totalQuestions: 4 
+        },
+        { 
+          id: 2, 
+          title: "Complex PLC Systems",
+          description: "Explore multi-step processes, sequence control, and how PLCs manage multiple signals and safety checks in industrial automation.",
+          totalQuestions: 5 
+        },
+        { 
+          id: 3, 
+          title: "HMIs",
+          description: "Understanding Human Machine Interfaces, process monitoring, batch control systems, and operator interface functionality.",
+          totalQuestions: 5 
+        },
+        { 
+          id: 4, 
+          title: "Emergency Stops",
+          description: "Learn about emergency stop systems, dual-channel safety circuits, and proper reset procedures for industrial machinery.",
+          totalQuestions: 5 
+        },
+        { 
+          id: 5, 
+          title: "Status LED",
+          description: "Understanding system status indicators, LED patterns, and visual diagnostic systems for machine state monitoring.",
+          totalQuestions: 5 
+        },
+        { 
+          id: 6, 
+          title: "Normally Open vs Normally Closed",
+          description: "Learn about different types of contacts, input states, and their behavior in PLC systems for reliable control.",
+          totalQuestions: 5 
+        },
+        { 
+          id: 7, 
+          title: "Proximity Switch",
+          description: "Understanding inductive proximity sensors, object detection, and their applications in automation and safety systems.",
+          totalQuestions: 5 
+        },
+        { 
+          id: 8, 
+          title: "Potentiometer",
+          description: "Learn about variable resistance control, 0-10V signals, and analog input scaling for motor speed control.",
+          totalQuestions: 5 
+        },
+        { 
+          id: 9, 
+          title: "Temperature Sensor",
+          description: "Understanding PT100 temperature measurement, signal processing, and PLC analog input configuration.",
+          totalQuestions: 5 
+        },
+        { 
+          id: 10, 
+          title: "Digital Outputs",
+          description: "Learn about PLC output control, device activation patterns, and output sequencing in industrial systems.",
+          totalQuestions: 5 
+        },
+        { 
+          id: 11, 
+          title: "Motor PWM",
+          description: "Understanding Pulse Width Modulation for motor speed control and how PLCs generate variable output signals.",
+          totalQuestions: 5 
+        },
+        { 
+          id: 12, 
+          title: "Relays",
+          description: "Learn about relay control, electrical isolation, and safely switching high-power devices using PLC outputs.",
+          totalQuestions: 5 
+        }
       ],
-      fault: [
-        { id: 1, title: "Fault Scenario 1", type: "fault", totalQuestions: 3 },
-        { id: 2, title: "Fault Scenario 2", type: "fault", totalQuestions: 3 },
-        { id: 3, title: "Fault Scenario 3", type: "fault", totalQuestions: 3 },
-        { id: 4, title: "Fault Scenario 4", type: "fault", totalQuestions: 3 },
-        { id: 5, title: "Fault Scenario 5", type: "fault", totalQuestions: 3 },
-        { id: 6, title: "Fault Scenario 6", type: "fault", totalQuestions: 3 },
-        { id: 7, title: "Fault Scenario 7", type: "fault", totalQuestions: 3 },
-        { id: 8, title: "Fault Scenario 8", type: "fault", totalQuestions: 3 }
-      ]
+      fault: []  // No fault scenarios in this course
     };
 
     // Initialize storage if needed
@@ -153,6 +202,7 @@ class WorksheetTracker {
         title: worksheet ? worksheet.title : `Worksheet ${worksheetId}`,
         answers: answers,
         completedQuestions,
+        correctAnswers: completedQuestions, // For backward compatibility with dashboard
         totalQuestions,
         completionPercentage,
         lastUpdated: data.metadata ? data.metadata.lastUpdated : null
@@ -164,6 +214,7 @@ class WorksheetTracker {
         type,
         answers: {},
         completedQuestions: 0,
+        correctAnswers: 0, // For backward compatibility with dashboard
         totalQuestions: 0,
         completionPercentage: 0,
         lastUpdated: null

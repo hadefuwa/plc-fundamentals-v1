@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="assets/icons/matrix-icon.ico">
-  <script src="worksheet-core.js"></script>
   <script src="worksheet-tracking.js"></script>
   <!-- Add Chart.js before our scripts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -43,7 +42,7 @@
     
     .student-info {
       background: #23272b;
-      padding: 20px;
+      padding: clamp(15px, 3vw, 25px);
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
       margin-bottom: 20px;
@@ -68,10 +67,10 @@
     }
     
     .form-group input {
-      padding: 10px;
+      padding: clamp(8px, 2vw, 12px);
       border: 2px solid #444;
       border-radius: 4px;
-      font-size: 14px;
+      font-size: clamp(12px, 2vw, 14px);
       background: #2d2d2d;
       color: white;
       transition: border-color 0.3s ease;
@@ -84,7 +83,7 @@
 
     .quick-stats {
       background: #23272b;
-      padding: 20px;
+      padding: clamp(15px, 3vw, 25px);
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
       margin-bottom: 20px;
@@ -95,7 +94,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 0;
+      padding: clamp(8px, 1.5vw, 12px) 0;
       border-bottom: 1px solid #444;
     }
 
@@ -120,7 +119,7 @@
     
     .progress-section {
       background: #23272b;
-      padding: 20px;
+      padding: clamp(15px, 3vw, 25px);
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
       color: white;
@@ -158,16 +157,16 @@
     .worksheet-card {
       border: 1px solid #444;
       border-radius: 8px;
-      padding: 20px;
+      padding: clamp(12px, 2.5vw, 20px);
       transition: transform 0.2s, box-shadow 0.2s;
       cursor: pointer;
       background: #2d2d2d;
       color: white;
-      min-height: 150px;
+      min-height: 200px;
       height: auto;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: space-between;
       gap: 15px;
       margin: 0;
       box-sizing: border-box;
@@ -182,6 +181,14 @@
       color: #fff;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
       line-height: 1.4;
+    }
+    
+    .worksheet-description {
+      font-size: 0.9em;
+      color: #ccc;
+      line-height: 1.5;
+      margin: 10px 0;
+      flex-grow: 1;
     }
     
     .worksheet-type {
@@ -312,7 +319,7 @@
 
     .chart-section {
       background: #23272b;
-      padding: 20px;
+      padding: clamp(15px, 3vw, 25px);
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
       margin-bottom: 20px;
@@ -341,11 +348,14 @@
         gap: 20px;
       }
       .worksheet-card {
-        min-height: 140px;
-        padding: 15px;
+        min-height: 180px;
+        padding: clamp(10px, 2vw, 15px);
       }
       .progress-section {
-        padding: 15px;
+        padding: clamp(12px, 2.5vw, 20px);
+      }
+      .student-info, .quick-stats, .export-section, .chart-section {
+        padding: clamp(12px, 2.5vw, 20px);
       }
     }
     
@@ -361,7 +371,18 @@
         gap: 15px;
       }
       .worksheet-card {
-        min-height: 130px;
+        min-height: 160px;
+        padding: clamp(8px, 2vw, 12px);
+      }
+      .worksheet-description {
+        font-size: 0.85em;
+      }
+      .student-info, .quick-stats, .export-section, .chart-section, .progress-section {
+        padding: clamp(10px, 3vw, 15px);
+      }
+      .form-group input {
+        padding: clamp(6px, 2vw, 10px);
+        font-size: clamp(11px, 2.5vw, 13px);
       }
     }
 
@@ -373,7 +394,7 @@
 
     .export-section {
       background: #23272b;
-      padding: 20px;
+      padding: clamp(15px, 3vw, 25px);
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
       margin-bottom: 20px;
@@ -771,9 +792,6 @@
           </a>
         </li>
         <li class="nav-item">
-          
-        </li>
-        <li class="nav-item">
           <a href="#" onclick="window.location='tracking-dashboard.html'" class="nav-link active">
             <i class="fas fa-chart-line"></i> PROGRESS
           </a>
@@ -895,13 +913,12 @@
         <div class="progress-section">
           <div class="section-header">
             <h2><i class="fas fa-cogs"></i> Maintenance Worksheets (CP2388)</h2>
-            <span class="section-count" id="maintenanceCount">0/14</span>
+            <span class="section-count" id="maintenanceCount">0/12</span>
           </div>
           <div class="worksheet-grid" id="maintenanceWorksheets">
             <!-- Will be populated by JavaScript -->
           </div>
         </div>
-
 
       </div>
     </div>
@@ -924,24 +941,32 @@
 
     // Initialize dashboard when page loads
     document.addEventListener('DOMContentLoaded', function() {
-      if (typeof Chart === 'undefined') {
-        console.error('Chart.js not loaded');
-        return;
-      }
+      // Wait for Chart.js to be available
+      const checkChartJS = () => {
+        if (typeof Chart === 'undefined') {
+          console.warn('Chart.js not loaded yet, retrying...');
+          setTimeout(checkChartJS, 100);
+          return;
+        }
+        
+        console.log('Chart.js loaded successfully');
+        
+        // Initialize dashboard components
+        initializeDashboard();
+        initializeCharts();
+        
+        // Set up refresh button
+        const refreshBtn = document.getElementById('refreshBtn');
+        if (refreshBtn) {
+          refreshBtn.addEventListener('click', function() {
+            updateQuickStats();
+            updateWorksheetsDisplay();
+            initializeCharts();
+          });
+        }
+      };
       
-      // Initialize dashboard components
-      initializeDashboard();
-      initializeCharts();
-      
-      // Set up refresh button
-      const refreshBtn = document.getElementById('refreshBtn');
-      if (refreshBtn) {
-        refreshBtn.addEventListener('click', function() {
-          updateQuickStats();
-          updateWorksheetsDisplay();
-          initializeCharts();
-        });
-      }
+      checkChartJS();
     });
 
     function initializeDashboard() {
@@ -953,6 +978,15 @@
       const stats = worksheetTracker.getOverallProgress();
       const quickStatsDiv = document.getElementById('quickStats');
       
+      // Calculate completed worksheets
+      let completedWorksheets = 0;
+      for (let i = 1; i <= 12; i++) {
+        const progress = worksheetTracker.getWorksheetProgress(i);
+        if (progress.correctAnswers === progress.totalQuestions) {
+          completedWorksheets++;
+        }
+      }
+      
       quickStatsDiv.innerHTML = `
         <div class="stat-item">
           <span class="stat-label">Overall Progress</span>
@@ -960,11 +994,11 @@
         </div>
         <div class="stat-item">
           <span class="stat-label">Completed Worksheets</span>
-          <span class="stat-value">${stats.completedWorksheets}/${stats.totalWorksheets}</span>
+          <span class="stat-value">${completedWorksheets}/12</span>
         </div>
         <div class="stat-item">
           <span class="stat-label">Questions Answered</span>
-          <span class="stat-value">${stats.completedQuestions}/${stats.totalQuestions}</span>
+          <span class="stat-value">${stats.correctAnswers}/${stats.totalQuestions}</span>
         </div>
         <div class="stat-item">
           <span class="stat-label">Last Activity</span>
@@ -992,184 +1026,156 @@
         return;
       }
 
+      console.log('Initializing progress chart...');
       const ctx = canvas.getContext('2d');
-      const allProgress = worksheetTracker.getAllProgress();
       
-      // Prepare data for chart
-      const maintenanceData = worksheetTracker.worksheets.maintenance.map(worksheet => {
-        const progress = allProgress[`maintenance-${worksheet.id}`] || { completionPercentage: 0 };
-        return progress.completionPercentage || 0;
-      });
+      // Get progress data for all worksheets
+      const worksheetProgress = [];
+      const worksheetLabels = [];
+      const worksheetColors = [];
       
-      const faultData = worksheetTracker.worksheets.fault.map(worksheet => {
-        const progress = allProgress[`fault-${worksheet.id}`] || { completionPercentage: 0 };
-        return progress.completionPercentage || 0;
-      });
+      // Get progress for all worksheets (1-12)
+      for (let i = 1; i <= 12; i++) {
+        const progress = worksheetTracker.getWorksheetProgress(i);
+        console.log(`Worksheet ${i} progress:`, progress);
+        worksheetProgress.push(progress.completionPercentage);
+        worksheetLabels.push(`WS ${i}`);
+        
+        // Set colors based on completion
+        if (progress.completionPercentage === 0) {
+          worksheetColors.push('#666');
+        } else if (progress.completionPercentage === 100) {
+          worksheetColors.push(getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() || '#4A9EFF');
+        } else {
+          worksheetColors.push('#ff9800');
+        }
+      }
+
+      console.log('Chart data:', { worksheetProgress, worksheetLabels, worksheetColors });
 
       // Destroy existing chart if it exists
       if (progressChart instanceof Chart) {
+        console.log('Destroying existing chart...');
         progressChart.destroy();
       }
       
-      progressChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: [
-            ...worksheetTracker.worksheets.maintenance.map(w => `WS ${w.id}`),
-            ...worksheetTracker.worksheets.fault.map(w => `FS ${w.id}`)
-          ],
-          datasets: [{
-            label: 'Completion %',
-            data: [...maintenanceData, ...faultData],
-                          backgroundColor: function(context) {
-              const value = context.raw || 0;
-              if (value === 0) return '#666';
-              if (value === 100) return getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
-              return '#ff9800';
+      try {
+        progressChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: worksheetLabels,
+            datasets: [{
+              label: 'Completion %',
+              data: worksheetProgress,
+              backgroundColor: worksheetColors,
+              borderColor: '#333',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            resizeDelay: 0,
+            animation: {
+              duration: 0
             },
-            borderColor: '#333',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          resizeDelay: 0,
-          animation: {
-            duration: 0
-          },
-          layout: {
-            padding: {
-              left: 10,
-              right: 30,
-              top: 10,
-              bottom: 10
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100,
-              grid: {
-                color: '#333'
-              },
-              ticks: {
-                color: '#aaa',
-                callback: value => value + '%'
+            layout: {
+              padding: {
+                left: 10,
+                right: 30,
+                top: 10,
+                bottom: 10
               }
             },
-            x: {
-              grid: {
-                color: '#333'
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100,
+                grid: {
+                  color: '#333'
+                },
+                ticks: {
+                  color: '#aaa',
+                  callback: value => value + '%'
+                }
               },
-              ticks: {
-                color: '#aaa'
+              x: {
+                grid: {
+                  color: '#333'
+                },
+                ticks: {
+                  color: '#aaa'
+                }
               }
-            }
-          },
-          plugins: {
-            legend: {
-              display: false
             },
-            tooltip: {
-              enabled: true,
-              position: 'nearest',
-              z: 1,
-              callbacks: {
-                label: function(context) {
-                  return `Completion: ${context.raw || 0}%`;
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                enabled: true,
+                position: 'nearest',
+                z: 1,
+                callbacks: {
+                  label: function(context) {
+                    return `Completion: ${context.raw || 0}%`;
+                  }
                 }
               }
             }
           }
-        }
-      });
+        });
+        console.log('Chart initialized successfully');
+      } catch (error) {
+        console.error('Error initializing chart:', error);
+      }
     }
 
     function updateWorksheetsDisplay() {
-      const allProgress = worksheetTracker.getAllProgress();
-      
       // Update maintenance worksheets
       const maintenanceContainer = document.getElementById('maintenanceWorksheets');
       const maintenanceCount = document.getElementById('maintenanceCount');
       let maintenanceCompleted = 0;
       
-      maintenanceContainer.innerHTML = worksheetTracker.worksheets.maintenance.map(worksheet => {
-        const progress = allProgress[`maintenance-${worksheet.id}`] || {
-          completedQuestions: 0,
-          totalQuestions: worksheet.totalQuestions,
-          completionPercentage: 0
-        };
+      maintenanceContainer.innerHTML = '';
+      
+      // Create worksheet cards for worksheets 1-12
+      for (let i = 1; i <= 12; i++) {
+        const progress = worksheetTracker.getWorksheetProgress(i);
+        const worksheet = worksheetTracker.worksheets.maintenance.find(w => w.id === i);
         
-        const isComplete = progress.completedQuestions === progress.totalQuestions;
-        const statusClass = progress.completedQuestions === 0 ? 'not-started' : 
+        if (!worksheet) continue;
+        
+        const isComplete = progress.correctAnswers === progress.totalQuestions;
+        const statusClass = progress.correctAnswers === 0 ? 'not-started' : 
                           isComplete ? 'completed' : 'incomplete';
         
         if (isComplete) maintenanceCompleted++;
         
-        return `
-          <div class="worksheet-card ${statusClass}" onclick="openWorksheet('maintenance', ${worksheet.id})">
+        const worksheetCard = `
+          <div class="worksheet-card ${statusClass}" onclick="openWorksheet('maintenance', ${i})">
             <div class="worksheet-title">${worksheet.title}</div>
-            <span class="worksheet-type maintenance">Maintenance</span>
+            <div class="worksheet-description">${worksheet.description}</div>
             <div class="progress-bar">
               <div class="progress-fill ${statusClass}" style="width: ${progress.completionPercentage || 0}%"></div>
             </div>
             <div class="worksheet-stats">
-              <span>${progress.completedQuestions || 0}/${progress.totalQuestions} questions</span>
+              <span>${progress.correctAnswers || 0}/${progress.totalQuestions} questions</span>
               <span>${progress.completionPercentage || 0}%</span>
             </div>
             ${progress.lastUpdated ? `<div class="last-activity">Last updated: ${new Date(progress.lastUpdated).toLocaleString()}</div>` : ''}
           </div>
         `;
-      }).join('');
-      
-      maintenanceCount.textContent = `${maintenanceCompleted}/${worksheetTracker.worksheets.maintenance.length}`;
-      
-      // Update fault worksheets
-      const faultContainer = document.getElementById('faultWorksheets');
-      const faultCount = document.getElementById('faultCount');
-      let faultCompleted = 0;
-      
-      // Use the same worksheet-grid class for consistency
-      faultContainer.className = 'worksheet-grid';
-      
-      faultContainer.innerHTML = worksheetTracker.worksheets.fault.map(worksheet => {
-        const progress = allProgress[`fault-${worksheet.id}`] || {
-          completedQuestions: 0,
-          totalQuestions: worksheet.totalQuestions,
-          completionPercentage: 0
-        };
         
-        const isComplete = progress.completedQuestions === progress.totalQuestions;
-        const statusClass = progress.completedQuestions === 0 ? 'not-started' : 
-                          isComplete ? 'completed' : 'incomplete';
-        
-        if (isComplete) faultCompleted++;
-        
-        return `
-          <div class="worksheet-card ${statusClass}" onclick="openWorksheet('fault', ${worksheet.id})">
-            <div class="worksheet-title">${worksheet.title}</div>
-            <span class="worksheet-type fault">Fault Scenario</span>
-            <div class="progress-bar">
-              <div class="progress-fill ${statusClass}" style="width: ${progress.completionPercentage || 0}%"></div>
-            </div>
-            <div class="worksheet-stats">
-              <span>${progress.completedQuestions || 0}/${progress.totalQuestions} questions</span>
-              <span>${progress.completionPercentage || 0}%</span>
-            </div>
-            ${progress.lastUpdated ? `<div class="last-activity">Last updated: ${new Date(progress.lastUpdated).toLocaleString()}</div>` : ''}
-          </div>
-        `;
-      }).join('');
+        maintenanceContainer.innerHTML += worksheetCard;
+      }
       
-      faultCount.textContent = `${faultCompleted}/${worksheetTracker.worksheets.fault.length}`;
+      maintenanceCount.textContent = `${maintenanceCompleted}/12`;
     }
 
     function openWorksheet(type, id) {
       if (type === 'maintenance') {
         window.location.href = `worksheet-${id}.html`;
-      } else if (type === 'fault') {
-        window.location.href = `fault-scenario-${id}.html`;
       }
     }
 
@@ -1344,6 +1350,34 @@
       updateQuickStats();
       updateWorksheetsDisplay();
     }, 30000);
+
+    // Disable service worker error notifications
+    if ('serviceWorker' in navigator) {
+      // Override console.error to filter out service worker MIME type errors
+      const originalConsoleError = console.error;
+      console.error = function(...args) {
+        const message = args.join(' ');
+        if (message.includes('Service Worker') || message.includes('MIME type') || message.includes('service-worker')) {
+          // Silently ignore service worker related errors
+          return;
+        }
+        originalConsoleError.apply(console, args);
+      };
+
+      // Prevent any service worker error notifications from appearing
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1 && 
+                (node.textContent?.includes('Service Worker Error') || 
+                 node.textContent?.includes('MIME type issue'))) {
+              node.remove();
+            }
+          });
+        });
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
   </script>
 </body>
 </html> 
