@@ -5,7 +5,7 @@ Here’s a structured plan for adding interactive simulations to each worksheet 
 
 Interactive Simulation Plan for CP0539 Worksheets
 
-Industrial Maintenance of Closed Loop Systems
+Industrial Maintenance of PLC Fundamentals Systems
 
 Worksheet 1 – Closed-Loop Control Systems
 
@@ -142,7 +142,7 @@ Worksheet 14 – Faults
 
 ---
 
-Here is the interactive simulation plan for CP6773 – Troubleshooting & Fault-Finding Closed Loop Systems.
+Here is the interactive simulation plan for CP6773 – Troubleshooting & Fault-Finding PLC Fundamentals Systems.
 
 This curriculum focuses on applying diagnostics in realistic fault scenarios. Each scenario should simulate industrial maintenance conditions where alarms are disabled, encouraging learners to use the IO screen, HMI mimic, and logical deduction.
 
@@ -151,7 +151,7 @@ This curriculum focuses on applying diagnostics in realistic fault scenarios. Ea
 
 Interactive Simulation Plan for CP6773 Scenarios
 
-Troubleshooting & Fault-Finding Closed Loop Systems
+Troubleshooting & Fault-Finding PLC Fundamentals Systems
 
 Scenario 1 – Titanium Forging
 
@@ -207,7 +207,7 @@ Consistent Toolset: IO screen, HMI mimic, fault injection, and manual resets are
 Redundancy & Safety Themes: E-Stop channels, sensor fail-safes, and cut-out logic are well-covered — critical for industrial learners.
 
 🔧 Targeted Recommendations (CP0539)
-Worksheet 1 – Closed Loop
+Worksheet 1 – PLC Fundamentals
 ✅ Good.
 
 ✅ Suggestion: Add a “setpoint unreachable” simulation, forcing the user to identify why the system can't stabilise despite PID efforts.

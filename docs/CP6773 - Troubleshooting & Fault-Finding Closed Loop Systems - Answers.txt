@@ -12,8 +12,8 @@ Version Control 8
 
 
 INTRODUCTION
-This document highlights all the answers to the questions posed in the student handout for the worksheets curriculum “CP6773 - Troubleshooting & Fault-Finding Closed Loop Systems”.
-This is the second curriculum, please complete the CP0539 - Industrial Maintenance of Closed Loop Systems curriculum first before starting this Fault Scenarios one.
+This document highlights all the answers to the questions posed in the student handout for the worksheets curriculum ï¿½CP6773 - Troubleshooting & Fault-FindinPLC Fundamentalsop Systemsï¿½.
+This is the second curriculum, please complete the CP0539 - Industrial Maintenance of PLC Fundamentals Systems curriculum first before starting this Fault Scenarios one.
 
 
 
@@ -45,7 +45,7 @@ Solution: The student must notice on the flow manometer gauge that the system is
 Scenario 4: Tank Temperature Too Low
 Solution: The tank temperature is blipping to below 0 degrees every 15 seconds or so. The fault only remains for a few seconds before clearing.
 Scenario 5: High Float Switch
-Solution: Correctly deduce the tanks high level float switch is the problem. There’s no signal for it on the IO screen.
+Solution: Correctly deduce the tanks high level float switch is the problem. Thereï¿½s no signal for it on the IO screen.
 Scenario 6: Estop Channel
 Solution: Correctly deduce one of the Estop channels is the problem.
 Scenario 7: Temperature Scalar 
@@ -59,19 +59,19 @@ Should you wish to explain possible reasons for each fault scenarios, you can do
 Scenario 1 Explanation: Tank Temperature Too High
 A mistake like this is common in industry because operators sometimes add temporary offsets to compensate for sensor errors or delays in heating. If they forget to remove the offset after troubleshooting, the system continues to run with incorrect temperature readings, causing overheating or process failures.
 Scenario 2 Explanation: Tank Lid Flicker
-An issue like this would happen in industry because proximity switches are prone to misalignment over time due to vibrations, repeated use, or mechanical wear. If the sensor isn’t properly checked during maintenance, it may flicker on and off, falsely indicating that the lid is open and preventing the system from running.
+An issue like this would happen in industry because proximity switches are prone to misalignment over time due to vibrations, repeated use, or mechanical wear. If the sensor isnï¿½t properly checked during maintenance, it may flicker on and off, falsely indicating that the lid is open and preventing the system from running.
 Scenario 3 Explanation: Bad Flow
 This kind of problem tends to occur in industry because flow issues can be caused by blockages, airlocks in the piping, pump cavitation, or partially closed valves. Wear and tear on pumps or leaks in the system can also reduce flow, while buildup of debris in filters or strainers can create unexpected restrictions. If these issues aren't identified and fixed, the system struggles to maintain proper flow rates, leading to unstable operation.
 Scenario 4 Explanation: Tank Temperature Too Low
-A situation like this can arise in industry because maintenance teams often apply offsets to sensor readings when trying to match expected values or troubleshoot a faulty sensor. If the offset isn’t removed afterward, the system continues operating with incorrect temperature data, leading to cold tanks and process failures.
+A situation like this can arise in industry because maintenance teams often apply offsets to sensor readings when trying to match expected values or troubleshoot a faulty sensor. If the offset isnï¿½t removed afterward, the system continues operating with incorrect temperature data, leading to cold tanks and process failures.
 Scenario 5 Explanation: High Float Switch
 This kind of failure is common in industry because float switches often degrade over time due to wear, contamination, or electrical interference. If a switch starts triggering intermittently due to mechanical sticking or water ingress, it can falsely indicate high levels, leading to unnecessary shutdowns.
 Scenario 6 Explanation: Estop Channel
 This would often happen in industry because emergency stop circuits can sometimes experience frequent use, leading to worn-out contacts, broken wiring, or corrosion. If an Estop channel begins failing, the system may incorrectly detect a fault, causing unexpected shutdowns and requiring troubleshooting. In this scenario it was mentioned that a repair was done. These can sometimes not be done correctly.
 Scenario 7 Explanation: Temperature Scalar
-This is a common problem in industry because incorrect scaling can be applied to sensors during installation or recalibration to match other equipment. If the scaling isn’t verified properly, the system operates with skewed temperature data, affecting performance and triggering unnecessary alarms.
+This is a common problem in industry because incorrect scaling can be applied to sensors during installation or recalibration to match other equipment. If the scaling isnï¿½t verified properly, the system operates with skewed temperature data, affecting performance and triggering unnecessary alarms.
 Scenario 8 Explanation: Settings
-In industry, PID values are sometimes shown on the HMI for engineers to adjust. This can be dangerous but none the less, inexperienced people do tend to change these from time to time. They often change the Kp parameter hoping to make the system go “faster”, not realising the system was set this way for a reason. Often times there is no “reset” button to roll the PID parameters back. In this case the system will have to be retuned or recommissioned. 
+In industry, PID values are sometimes shown on the HMI for engineers to adjust. This can be dangerous but none the less, inexperienced people do tend to change these from time to time. They often change the Kp parameter hoping to make the system go ï¿½fasterï¿½, not realising the system was set this way for a reason. Often times there is no ï¿½resetï¿½ button to roll the PID parameters back. In this case the system will have to be retuned or recommissioned. 
 
 
 
@@ -82,5 +82,5 @@ VERSION CONTROL
 
 0Version Control		
 
-	Copyright © 2025 Matrix Technology Solutions Limited	Page 2 of 2
+	Copyright ï¿½ 2025 Matrix Technology Solutions Limited	Page 2 of 2
 
