@@ -11,455 +11,455 @@
   <!-- Add Chart.js before our scripts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    .tracking-dashboard {
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .main-navigation {
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--accent-color, #4A9EFF);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
     }
-    
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link:hover {
+      background: rgba(74, 158, 255, 0.1);
+      color: var(--accent-color, #4A9EFF);
+    }
+
+    .nav-link.active {
+      background: var(--accent-color, #4A9EFF);
+      color: white;
+    }
+
+    /* Main container */
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    /* Header */
     .dashboard-header {
       text-align: center;
-      margin-bottom: 30px;
-      background: linear-gradient(135deg, var(--background-color) 0%, #1a1d20 100%);
-      padding: 30px;
-      border-radius: 10px;
-      color: white;
-      border: 2px solid var(--accent-color);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      margin-bottom: 40px;
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(74, 158, 255, 0.1) 0%, rgba(74, 158, 255, 0.05) 100%);
+      border: 2px solid var(--accent-color, #4A9EFF);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
+    .dashboard-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: var(--accent-color, #4A9EFF);
+    }
+
+    .dashboard-header p {
+      font-size: 1.1rem;
+      color: #cccccc;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Grid layout */
     .dashboard-grid {
       display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 20px;
+      grid-template-columns: 350px 1fr;
+      gap: 30px;
+      margin-bottom: 30px;
     }
 
+    /* Sidebar */
     .sidebar {
-      position: sticky;
-      top: 20px;
-      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
     }
-    
-    .student-info {
-      background: #23272b;
-      padding: clamp(15px, 3vw, 25px);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+
+    .sidebar-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar-card h3 {
+      color: var(--accent-color, #4A9EFF);
       margin-bottom: 20px;
-      color: white;
-    }
-    
-    .student-form {
+      font-size: 1.2rem;
       display: flex;
-      flex-direction: column;
-      gap: 15px;
+      align-items: center;
+      gap: 10px;
     }
-    
+
+    /* Form styles */
     .form-group {
-      display: flex;
-      flex-direction: column;
+      margin-bottom: 20px;
     }
-    
+
     .form-group label {
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: white;
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #ffffff;
     }
-    
+
     .form-group input {
-      padding: clamp(8px, 2vw, 12px);
-      border: 2px solid #444;
-      border-radius: 4px;
-      font-size: clamp(12px, 2vw, 14px);
-      background: #2d2d2d;
-      color: white;
-      transition: border-color 0.3s ease;
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      font-size: 14px;
+      transition: all 0.3s ease;
     }
-    
+
     .form-group input:focus {
       outline: none;
-      border-color: var(--accent-color);
+      border-color: var(--accent-color, #4A9EFF);
+      box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
     }
 
-    .quick-stats {
-      background: #23272b;
-      padding: clamp(15px, 3vw, 25px);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      margin-bottom: 20px;
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-color, #4A9EFF), #3a8ce6);
       color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(74, 158, 255, 0.3);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #2196F3, #1976D2);
+      color: white;
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #f44336, #d32f2f);
+      color: white;
+    }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      gap: 15px;
     }
 
     .stat-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: clamp(8px, 1.5vw, 12px) 0;
-      border-bottom: 1px solid #444;
-    }
-
-    .stat-item:last-child {
-      border-bottom: none;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .stat-label {
-      color: #aaa;
+      color: #cccccc;
+      font-size: 14px;
     }
 
     .stat-value {
-      font-weight: bold;
-      color: var(--accent-color);
+      color: var(--accent-color, #4A9EFF);
+      font-weight: 700;
+      font-size: 16px;
     }
 
+    /* Export buttons */
+    .export-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .export-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Main content */
     .main-content {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-    }
-    
-    .progress-section {
-      background: #23272b;
-      padding: clamp(15px, 3vw, 25px);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      color: white;
-    }
-    
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #444;
-    }
-    
-    .section-header h2 {
-      color: var(--accent-color);
-      margin: 0;
-    }
-    
-    .section-count {
-      color: var(--accent-color);
-      font-weight: bold;
-      font-size: 1.1em;
+      gap: 30px;
     }
 
-    .worksheet-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      width: 100%;
-      margin: 0;
-      padding: 0;
+    .content-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
-    
-    .worksheet-card {
-      border: 1px solid #444;
-      border-radius: 8px;
-      padding: clamp(12px, 2.5vw, 20px);
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-      background: #2d2d2d;
-      color: white;
-      min-height: 200px;
-      height: auto;
+
+    .content-card h2 {
+      color: var(--accent-color, #4A9EFF);
+      margin-bottom: 25px;
+      font-size: 1.5rem;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 15px;
-      margin: 0;
-      box-sizing: border-box;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Chart section */
+    .chart-section {
+      min-height: 400px;
+    }
+
+    .chart-container {
+      height: 350px;
+      width: 100%;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .chart-container canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* Worksheets grid */
+    .worksheets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 25px;
+    }
+
+    .worksheet-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
-    
+
+    .worksheet-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      border-color: var(--accent-color, #4A9EFF);
+    }
+
+    .worksheet-card.completed {
+      border-left: 4px solid var(--accent-color, #4A9EFF);
+      background: linear-gradient(135deg, rgba(74, 158, 255, 0.1) 0%, rgba(74, 158, 255, 0.05) 100%);
+    }
+
+    .worksheet-card.incomplete {
+      border-left: 4px solid #ff9800;
+      background: linear-gradient(135deg, rgba(255, 152, 0, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
+    }
+
+    .worksheet-card.not-started {
+      border-left: 4px solid #666;
+      background: linear-gradient(135deg, rgba(102, 102, 102, 0.1) 0%, rgba(102, 102, 102, 0.05) 100%);
+    }
+
     .worksheet-title {
-      font-size: 1.2em;
-      font-weight: bold;
-      margin: 0;
-      color: #fff;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-      line-height: 1.4;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #ffffff;
     }
-    
-    .worksheet-description {
-      font-size: 0.9em;
-      color: #ccc;
-      line-height: 1.5;
-      margin: 10px 0;
-      flex-grow: 1;
-    }
-    
+
     .worksheet-type {
       display: inline-block;
       padding: 4px 12px;
       border-radius: 20px;
-      font-size: 0.85em;
+      font-size: 0.8rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      margin-bottom: 15px;
     }
-    
+
     .worksheet-type.maintenance {
-      background: rgba(74, 158, 255, 0.15);
-      color: var(--accent-color);
+      background: rgba(74, 158, 255, 0.2);
+      color: var(--accent-color, #4A9EFF);
       border: 1px solid rgba(74, 158, 255, 0.3);
     }
-    
-    .worksheet-type.fault {
-      background: rgba(255, 152, 0, 0.15);
-      color: #ff9800;
-      border: 1px solid rgba(255, 152, 0, 0.3);
-    }
-    
+
     .progress-bar {
       width: 100%;
       height: 8px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 4px;
       overflow: hidden;
-      margin: 8px 0;
-      position: relative;
+      margin: 15px 0;
     }
-    
+
     .progress-fill {
       height: 100%;
-      transition: width 0.3s ease;
+      transition: width 0.5s ease;
       border-radius: 4px;
-      position: absolute;
-      top: 0;
-      left: 0;
     }
-    
+
     .progress-fill.completed {
-      background: linear-gradient(90deg, var(--accent-color), #3a8ce6);
-      box-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+      background: linear-gradient(90deg, var(--accent-color, #4A9EFF), #3a8ce6);
     }
-    
+
     .progress-fill.incomplete {
       background: linear-gradient(90deg, #ff9800, #ffb74d);
-      box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
     }
-    
+
     .progress-fill.not-started {
       background: linear-gradient(90deg, #666, #888);
     }
-    
+
     .worksheet-stats {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.9em;
-      color: rgba(255, 255, 255, 0.7);
-      margin-top: auto;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #cccccc;
+      margin-top: 15px;
     }
-    
+
     .last-activity {
-      font-size: 0.8em;
-      color: rgba(255, 255, 255, 0.5);
-      margin-top: 5px;
-    }
-    
-    .worksheet-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-      border-color: var(--accent-color);
-    }
-    
-    .worksheet-card.completed {
-      border-left: 4px solid var(--accent-color);
-      background: linear-gradient(135deg, rgba(74, 158, 255, 0.1) 0%, rgba(74, 158, 255, 0.05) 100%);
-    }
-    
-    .worksheet-card.incomplete {
-      border-left: 4px solid #ff9800;
-      background: linear-gradient(135deg, rgba(255, 152, 0, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
-    }
-    
-    .worksheet-card.not-started {
-      border-left: 4px solid #666;
-      background: linear-gradient(135deg, rgba(102, 102, 102, 0.1) 0%, rgba(102, 102, 102, 0.05) 100%);
-    }
-    
-    .worksheet-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    @media (max-width: 768px) {
-      .worksheet-grid {
-        grid-template-columns: 1fr;
-      }
+      font-size: 0.8rem;
+      color: #999999;
+      margin-top: 8px;
     }
 
-    /* Remove any fault-grid specific styles if they exist */
-    .fault-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    @media (max-width: 768px) {
-      .fault-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .chart-section {
-      background: #23272b;
-      padding: clamp(15px, 3vw, 25px);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      margin-bottom: 20px;
-      color: white;
-      width: 100%;
-      overflow: hidden;
-      max-width: 100%;
-    }
-
-    .chart-container {
-      height: 400px;
-      width: 100%;
-      margin-top: 20px;
-      position: relative;
-      max-width: 100%;
-      overflow: hidden;
-      z-index: 1;
-    }
-    
+    /* Responsive design */
     @media (max-width: 1200px) {
-      .chart-container {
-        height: 350px;
-      }
-      .worksheet-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-      .worksheet-card {
-        min-height: 180px;
-        padding: clamp(10px, 2vw, 15px);
-      }
-      .progress-section {
-        padding: clamp(12px, 2.5vw, 20px);
-      }
-      .student-info, .quick-stats, .export-section, .chart-section {
-        padding: clamp(12px, 2.5vw, 20px);
-      }
-    }
-    
-    @media (max-width: 768px) {
       .dashboard-grid {
         grid-template-columns: 1fr;
       }
-      .chart-container {
-        height: 300px;
+      
+      .sidebar {
+        order: 2;
       }
-      .worksheet-grid {
+      
+      .main-content {
+        order: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-container {
+        padding: 20px 15px;
+      }
+      
+      .dashboard-header {
+        padding: 30px 20px;
+      }
+      
+      .dashboard-header h1 {
+        font-size: 2rem;
+      }
+      
+      .worksheets-grid {
         grid-template-columns: 1fr;
+      }
+      
+      .nav-menu {
         gap: 15px;
       }
-      .worksheet-card {
-        min-height: 160px;
-        padding: clamp(8px, 2vw, 12px);
-      }
-      .worksheet-description {
-        font-size: 0.85em;
-      }
-      .student-info, .quick-stats, .export-section, .chart-section, .progress-section {
-        padding: clamp(10px, 3vw, 15px);
-      }
-      .form-group input {
-        padding: clamp(6px, 2vw, 10px);
-        font-size: clamp(11px, 2.5vw, 13px);
+      
+      .nav-link {
+        font-size: 12px;
+        padding: 8px 12px;
       }
     }
 
-    /* Prevent chart overflow */
-    canvas {
-      max-width: 100% !important;
-      height: auto !important;
+    @media (max-width: 480px) {
+      .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+      }
+      
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
 
-    .export-section {
-      background: #23272b;
-      padding: clamp(15px, 3vw, 25px);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      margin-bottom: 20px;
-      color: white;
-    }
-    
-    .export-buttons {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    
-    .export-btn {
-      padding: 12px 24px;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .export-btn.json {
-      background: linear-gradient(135deg, #2196F3, #1976D2);
-      color: white;
-    }
-    
-    .export-btn.csv {
-      background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
-      color: white;
-    }
-    
-    .export-btn.pdf {
-      background: linear-gradient(135deg, #f44336, #d32f2f);
-      color: white;
-    }
-    
-    .export-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    }
-
-    .save-btn {
-      background: linear-gradient(135deg, var(--accent-color), #3a8ce6);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.2s;
-    }
-    
-    .save-btn:hover {
-      background: linear-gradient(135deg, #3a8ce6, #2d7dd2);
-    }
-
+    /* File input styling */
     .file-input-wrapper {
       position: relative;
-      display: inline-block;
-      margin: 10px 0;
+      margin: 15px 0;
     }
-    
+
     .file-input {
       position: absolute;
       opacity: 0;
@@ -467,309 +467,52 @@
       height: 100%;
       cursor: pointer;
     }
-    
+
     .file-input-label {
-      background: linear-gradient(135deg, #2196F3, #1976D2);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s;
-    }
-    
-    .file-input-label:hover {
-      background: linear-gradient(135deg, #1976D2, #1565C0);
-    }
-
-    @media (max-width: 1200px) {
-      .dashboard-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        position: static;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .student-form {
-        grid-template-columns: 1fr;
-      }
-      
-      .export-buttons {
-        flex-direction: column;
-      }
-      
-      .worksheet-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Reset Controls Styles */
-    .reset-controls {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      display: block;
       width: 100%;
+      text-align: center;
+    }
+
+    /* Reset controls */
+    .reset-controls {
+      margin-top: 20px;
     }
 
     .reset-options {
       display: none;
       flex-direction: column;
       gap: 10px;
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid #444;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .reset-options.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Reset Button Styles */
-    .reset-btn {
-      background: linear-gradient(135deg, #f44336, #d32f2f);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s ease;
       display: flex;
-      align-items: center;
-      gap: 8px;
-      width: 100%;
-      justify-content: center;
     }
 
-    .reset-btn:hover:not(:disabled) {
-      background: linear-gradient(135deg, #d32f2f, #b71c1c);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
-    }
-
-    .reset-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .reset-btn.export-btn {
-      background: linear-gradient(135deg, #2196F3, #1976D2);
-    }
-
-    .reset-btn.export-btn:hover {
-      background: linear-gradient(135deg, #1976D2, #1565C0);
-      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
-    }
-
-    .reset-btn.confirm-btn {
-      background: linear-gradient(135deg, #f44336, #d32f2f);
-    }
-
-    .reset-btn.confirm-btn:hover {
-      background: linear-gradient(135deg, #d32f2f, #b71c1c);
-      box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
-    }
-
-    .reset-btn.cancel-btn {
-      background: linear-gradient(135deg, #666666, #444444);
-    }
-
-    .reset-btn.cancel-btn:hover {
-      background: linear-gradient(135deg, #555555, #333333);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Popup Styles */
-    /* Modal/Popup Layer */
-    .modal-layer {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Chart Layer */
-    .chart-container {
-      position: relative;
-      z-index: 1;
-    }
-
-    canvas {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Reset z-index stacking context */
-    body {
-      position: relative;
-      z-index: auto;
-    }
-    
-    .main-container,
-    .main-content,
-    .chart-container,
-    canvas,
-    .Chart {
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* Ensure main content stays below popup */
-    .main-content {
-      z-index: 1 !important;
-      position: relative !important;
-    }
-
-    /* Popup Layer - Above Everything */
-    /* Create new stacking context for popup */
-    body.popup-open {
-      overflow: hidden !important;
-    }
-    
-    body.popup-open .main-content {
-      filter: blur(4px);
-      pointer-events: none;
-    }
-    
-    #resetPopup.popup-overlay {
+    /* Import status */
+    #importStatus {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
       display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 2147483647 !important;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      overflow: hidden;
-      opacity: 0;
-      transition: all 0.3s ease;
-      will-change: opacity;
-      transform: translateZ(0);
     }
 
-    #resetPopup.popup-overlay[style*="display: block"] {
-      opacity: 1;
+    /* Chart fallback */
+    #chartFallback {
+      display: none;
+      text-align: center;
+      padding: 50px;
+      color: #cccccc;
     }
 
-    #resetPopup .popup-content {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
-      padding: 30px;
-      border-radius: 12px;
-      border: 2px solid var(--accent-color);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-      max-width: 500px;
-      width: 90%;
-      z-index: 2147483647 !important;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      transform: translate(-50%, -50%) scale(0.95);
-    }
-
-    #resetPopup.popup-overlay[style*="display: block"] .popup-content {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .popup-content h3 {
-      color: #f44336;
-      font-size: 24px;
+    #chartFallback i {
+      font-size: 48px;
       margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .popup-content p {
-      color: #FFFFFF;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .popup-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 25px;
-    }
-
-    .popup-btn {
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .popup-btn.export-first {
-      background: linear-gradient(135deg, #2196F3, #1976D2);
-      color: white;
-    }
-
-    .popup-btn.export-first:hover {
-      background: linear-gradient(135deg, #1976D2, #1565C0);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
-    }
-
-    .popup-btn.reset-only {
-      background: linear-gradient(135deg, #f44336, #d32f2f);
-      color: white;
-    }
-
-    .popup-btn.reset-only:hover {
-      background: linear-gradient(135deg, #d32f2f, #b71c1c);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
-    }
-
-    .popup-btn.cancel {
-      background: linear-gradient(135deg, #666666, #444444);
-      color: white;
-    }
-
-    .popup-btn.cancel:hover {
-      background: linear-gradient(135deg, #555555, #333333);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-
-    @media (max-width: 480px) {
-      .popup-content {
-        padding: 20px;
-      }
-
-      .popup-content h3 {
-        font-size: 20px;
-      }
-
-      .popup-content p {
-        font-size: 14px;
-      }
-
-      .popup-btn {
-        padding: 10px 20px;
-        font-size: 14px;
-      }
+      color: var(--accent-color, #4A9EFF);
     }
   </style>
 </head>
@@ -787,7 +530,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" onclick="window.location='CP2388-worksheets.html'" class="nav-link">
+          <a href="#" onclick="window.location='cp2388-worksheets.html'" class="nav-link">
             <i class="fas fa-cogs"></i> CP2388
           </a>
         </li>
@@ -806,91 +549,97 @@
   </nav>
 
   <!-- Main Content -->
-  <div class="tracking-dashboard">
+  <div class="dashboard-container">
+    <!-- Header -->
     <div class="dashboard-header">
       <h1><i class="fas fa-chart-line"></i> Progress Dashboard</h1>
       <p>Track your progress across all worksheets and export results for your teacher</p>
     </div>
 
+    <!-- Dashboard Grid -->
     <div class="dashboard-grid">
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Student Information -->
-        <div class="student-info">
-          <h2><i class="fas fa-user"></i> Student Information</h2>
-          <form id="studentForm" class="student-form">
+        <div class="sidebar-card">
+          <h3><i class="fas fa-user"></i> Student Information</h3>
+          <form id="studentForm">
             <div class="form-group">
-              <label for="studentName">Student Name:</label>
+              <label for="studentName">Student Name</label>
               <input type="text" id="studentName" placeholder="Enter your name">
             </div>
             <div class="form-group">
-              <label for="studentId">Student ID:</label>
+              <label for="studentId">Student ID</label>
               <input type="text" id="studentId" placeholder="Enter your student ID">
             </div>
-            <button type="submit" class="save-btn">Save Information</button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Save Information
+            </button>
           </form>
         </div>
 
         <!-- Quick Stats -->
-        <div class="quick-stats">
-          <h2><i class="fas fa-tachometer-alt"></i> Quick Stats</h2>
-          <div id="quickStats">
+        <div class="sidebar-card">
+          <h3><i class="fas fa-tachometer-alt"></i> Quick Stats</h3>
+          <div class="stats-grid" id="quickStats">
             <!-- Will be populated by JavaScript -->
           </div>
         </div>
 
-        <!-- Export Section -->
-        <div class="export-section">
-          <h2><i class="fas fa-download"></i> Export Progress</h2>
-          <p>Export your progress report:</p>
+        <!-- Export Progress -->
+        <div class="sidebar-card">
+          <h3><i class="fas fa-download"></i> Export Progress</h3>
+          <p style="margin-bottom: 20px; color: #cccccc; font-size: 14px;">
+            Export your progress report:
+          </p>
           <div class="export-buttons">
-            <button class="export-btn json" onclick="exportToJSON()">
+            <button class="btn btn-secondary export-btn" onclick="exportToJSON()">
               <i class="fas fa-file-code"></i> Export as JSON
             </button>
-            <button class="export-btn csv" onclick="exportToCSV()">
+            <button class="btn btn-secondary export-btn" onclick="exportToCSV()">
               <i class="fas fa-file-csv"></i> Export as CSV
             </button>
-            <button class="export-btn pdf" onclick="exportToPDF()">
+            <button class="btn btn-danger export-btn" onclick="exportToPDF()">
               <i class="fas fa-file-pdf"></i> Export as PDF
             </button>
           </div>
           
-          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #444;">
-            <h3 style="color: var(--accent-color); margin-bottom: 15px;">
+          <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <h4 style="color: var(--accent-color, #4A9EFF); margin-bottom: 15px; font-size: 1rem;">
               <i class="fas fa-upload"></i> Import Progress
-            </h3>
-            <p style="margin-bottom: 15px; color: #9da5b1;">
+            </h4>
+            <p style="margin-bottom: 15px; color: #cccccc; font-size: 14px;">
               Import from a previous export:
             </p>
             <div class="file-input-wrapper">
               <input type="file" id="importFile" class="file-input" accept=".json" onchange="importProgressData(this)">
-              <label for="importFile" class="file-input-label">
+              <label for="importFile" class="btn btn-secondary file-input-label">
                 <i class="fas fa-upload"></i> Choose JSON File
               </label>
             </div>
-            <div id="importStatus" style="margin-top: 10px; padding: 10px; border-radius: 4px; display: none;"></div>
+            <div id="importStatus"></div>
           </div>
 
           <!-- Reset Section -->
-          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #444;">
-            <h3 style="color: #f44336; margin-bottom: 15px;">
+          <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <h4 style="color: #f44336; margin-bottom: 15px; font-size: 1rem;">
               <i class="fas fa-trash-alt"></i> Reset Progress
-            </h3>
-            <p style="margin-bottom: 15px; color: #9da5b1;">
+            </h4>
+            <p style="margin-bottom: 15px; color: #cccccc; font-size: 14px;">
               Reset all worksheet progress (this cannot be undone):
             </p>
             <div class="reset-controls">
-              <button onclick="showResetOptions()" class="reset-btn" id="initialResetBtn">
+              <button onclick="showResetOptions()" class="btn btn-danger" id="initialResetBtn">
                 <i class="fas fa-trash-alt"></i> Reset All Progress
               </button>
               <div id="resetOptions" class="reset-options">
-                <button onclick="exportAndReset()" class="reset-btn export-btn">
+                <button onclick="exportAndReset()" class="btn btn-secondary">
                   <i class="fas fa-download"></i> Export & Reset
                 </button>
-                <button onclick="resetProgress()" class="reset-btn confirm-btn">
+                <button onclick="resetProgress()" class="btn btn-danger">
                   <i class="fas fa-exclamation-triangle"></i> Confirm Reset
                 </button>
-                <button onclick="hideResetOptions()" class="reset-btn cancel-btn">
+                <button onclick="hideResetOptions()" class="btn btn-primary">
                   <i class="fas fa-times"></i> Cancel
                 </button>
               </div>
@@ -902,24 +651,24 @@
       <!-- Main Content -->
       <div class="main-content">
         <!-- Progress Charts -->
-        <div class="chart-section">
+        <div class="content-card chart-section">
           <h2><i class="fas fa-chart-bar"></i> Progress Overview</h2>
           <div class="chart-container">
             <canvas id="progressChart"></canvas>
+            <div id="chartFallback">
+              <i class="fas fa-chart-bar"></i>
+              <p>Loading progress chart...</p>
+            </div>
           </div>
         </div>
 
         <!-- Maintenance Worksheets -->
-        <div class="progress-section">
-          <div class="section-header">
-            <h2><i class="fas fa-cogs"></i> Maintenance Worksheets (CP2388)</h2>
-            <span class="section-count" id="maintenanceCount">0/12</span>
-          </div>
-          <div class="worksheet-grid" id="maintenanceWorksheets">
+        <div class="content-card">
+          <h2><i class="fas fa-cogs"></i> Maintenance Worksheets (CP2388) <span id="maintenanceCount" style="color: #cccccc; font-size: 0.9rem;">0/12</span></h2>
+          <div class="worksheets-grid" id="maintenanceWorksheets">
             <!-- Will be populated by JavaScript -->
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -941,16 +690,19 @@
 
     // Initialize dashboard when page loads
     document.addEventListener('DOMContentLoaded', function() {
-      // Wait for Chart.js to be available
-      const checkChartJS = () => {
-        if (typeof Chart === 'undefined') {
-          console.warn('Chart.js not loaded yet, retrying...');
-          setTimeout(checkChartJS, 100);
-          return;
-        }
-        
-        console.log('Chart.js loaded successfully');
-        
+      // Check if worksheetTracker is available
+      if (typeof worksheetTracker === 'undefined') {
+        console.error('WorksheetTracker not loaded');
+        return;
+      }
+      
+      if (typeof Chart === 'undefined') {
+        console.error('Chart.js not loaded');
+        return;
+      }
+      
+      // Wait a moment for DOM to be fully ready
+      setTimeout(() => {
         // Initialize dashboard components
         initializeDashboard();
         initializeCharts();
@@ -964,47 +716,46 @@
             initializeCharts();
           });
         }
-      };
-      
-      checkChartJS();
+      }, 100);
     });
 
     function initializeDashboard() {
+      loadStudentInfo();
       updateQuickStats();
       updateWorksheetsDisplay();
     }
 
     function updateQuickStats() {
-      const stats = worksheetTracker.getOverallProgress();
-      const quickStatsDiv = document.getElementById('quickStats');
-      
-      // Calculate completed worksheets
-      let completedWorksheets = 0;
-      for (let i = 1; i <= 12; i++) {
-        const progress = worksheetTracker.getWorksheetProgress(i);
-        if (progress.correctAnswers === progress.totalQuestions) {
-          completedWorksheets++;
+      try {
+        const stats = worksheetTracker.getOverallProgress();
+        const quickStatsDiv = document.getElementById('quickStats');
+        
+        if (!quickStatsDiv) {
+          console.error('Quick stats div not found');
+          return;
         }
+        
+        quickStatsDiv.innerHTML = `
+          <div class="stat-item">
+            <span class="stat-label">Overall Progress</span>
+            <span class="stat-value">${stats.completionPercentage || 0}%</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Completed Worksheets</span>
+            <span class="stat-value">${stats.completedWorksheets || 0}/${stats.totalWorksheets || 0}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Questions Answered</span>
+            <span class="stat-value">${stats.completedQuestions || 0}/${stats.totalQuestions || 0}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Last Activity</span>
+            <span class="stat-value">${formatLastActivity(stats.lastActivity)}</span>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Error updating quick stats:', error);
       }
-      
-      quickStatsDiv.innerHTML = `
-        <div class="stat-item">
-          <span class="stat-label">Overall Progress</span>
-          <span class="stat-value">${stats.completionPercentage}%</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">Completed Worksheets</span>
-          <span class="stat-value">${completedWorksheets}/12</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">Questions Answered</span>
-          <span class="stat-value">${stats.correctAnswers}/${stats.totalQuestions}</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">Last Activity</span>
-          <span class="stat-value">${formatLastActivity(stats.lastActivity)}</span>
-        </div>
-      `;
     }
 
     function formatLastActivity(lastActivity) {
@@ -1020,54 +771,77 @@
     }
 
     function initializeCharts() {
-      const canvas = document.getElementById('progressChart');
-      if (!canvas) {
-        console.error('Progress chart canvas not found');
-        return;
-      }
-
-      console.log('Initializing progress chart...');
-      const ctx = canvas.getContext('2d');
-      
-      // Get progress data for all worksheets
-      const worksheetProgress = [];
-      const worksheetLabels = [];
-      const worksheetColors = [];
-      
-      // Get progress for all worksheets (1-12)
-      for (let i = 1; i <= 12; i++) {
-        const progress = worksheetTracker.getWorksheetProgress(i);
-        console.log(`Worksheet ${i} progress:`, progress);
-        worksheetProgress.push(progress.completionPercentage);
-        worksheetLabels.push(`WS ${i}`);
-        
-        // Set colors based on completion
-        if (progress.completionPercentage === 0) {
-          worksheetColors.push('#666');
-        } else if (progress.completionPercentage === 100) {
-          worksheetColors.push(getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() || '#4A9EFF');
-        } else {
-          worksheetColors.push('#ff9800');
-        }
-      }
-
-      console.log('Chart data:', { worksheetProgress, worksheetLabels, worksheetColors });
-
-      // Destroy existing chart if it exists
-      if (progressChart instanceof Chart) {
-        console.log('Destroying existing chart...');
-        progressChart.destroy();
-      }
-      
       try {
+        console.log('Initializing charts...');
+        
+        const canvas = document.getElementById('progressChart');
+        const fallback = document.getElementById('chartFallback');
+        
+        if (!canvas) {
+          console.error('Progress chart canvas not found');
+          if (fallback) {
+            fallback.style.display = 'block';
+            fallback.innerHTML = '<i class="fas fa-exclamation-triangle"></i><p>Chart canvas not found</p>';
+          }
+          return;
+        }
+        
+        console.log('Canvas found:', canvas);
+        console.log('Canvas dimensions:', canvas.width, 'x', canvas.height);
+
+        // Set explicit canvas dimensions to ensure visibility
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        console.log('Set canvas dimensions to:', canvas.width, 'x', canvas.height);
+
+        // Show fallback initially
+        if (fallback) {
+          fallback.style.display = 'block';
+        }
+
+        const ctx = canvas.getContext('2d');
+        const allProgress = worksheetTracker.getAllProgress();
+        
+        console.log('All progress:', allProgress);
+        
+        // Prepare data for chart
+        if (!worksheetTracker.worksheets || !worksheetTracker.worksheets.maintenance) {
+          console.error('Worksheets data not available for chart');
+          if (fallback) {
+            fallback.innerHTML = '<i class="fas fa-exclamation-triangle"></i><p>Worksheets data not available</p>';
+          }
+          return;
+        }
+        
+        console.log('Worksheets available:', worksheetTracker.worksheets.maintenance);
+        
+        const maintenanceData = worksheetTracker.worksheets.maintenance.map(worksheet => {
+          const progress = allProgress[`maintenance-${worksheet.id}`] || { completionPercentage: 0 };
+          return progress.completionPercentage || 0;
+        });
+        
+        console.log('Maintenance data:', maintenanceData);
+
+        // Destroy existing chart if it exists
+        if (progressChart instanceof Chart) {
+          console.log('Destroying existing chart...');
+          progressChart.destroy();
+        }
+        
+        console.log('Creating new chart...');
         progressChart = new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: worksheetLabels,
+            labels: worksheetTracker.worksheets.maintenance.map(w => `WS ${w.id}`),
             datasets: [{
               label: 'Completion %',
-              data: worksheetProgress,
-              backgroundColor: worksheetColors,
+              data: maintenanceData,
+              backgroundColor: function(context) {
+                const value = context.raw || 0;
+                if (value === 0) return '#666';
+                if (value === 100) return getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
+                return '#ff9800';
+              },
               borderColor: '#333',
               borderWidth: 1
             }]
@@ -1125,52 +899,85 @@
             }
           }
         });
-        console.log('Chart initialized successfully');
+        
+        console.log('Chart created successfully');
+        
+        // Hide fallback on success
+        if (fallback) {
+          fallback.style.display = 'none';
+        }
+        
       } catch (error) {
         console.error('Error initializing chart:', error);
+        
+        // Show error in fallback
+        const fallback = document.getElementById('chartFallback');
+        if (fallback) {
+          fallback.style.display = 'block';
+          fallback.innerHTML = '<i class="fas fa-exclamation-triangle"></i><p>Error loading chart: ' + error.message + '</p>';
+        }
       }
     }
 
     function updateWorksheetsDisplay() {
-      // Update maintenance worksheets
-      const maintenanceContainer = document.getElementById('maintenanceWorksheets');
-      const maintenanceCount = document.getElementById('maintenanceCount');
-      let maintenanceCompleted = 0;
-      
-      maintenanceContainer.innerHTML = '';
-      
-      // Create worksheet cards for worksheets 1-12
-      for (let i = 1; i <= 12; i++) {
-        const progress = worksheetTracker.getWorksheetProgress(i);
-        const worksheet = worksheetTracker.worksheets.maintenance.find(w => w.id === i);
+      try {
+        const allProgress = worksheetTracker.getAllProgress();
         
-        if (!worksheet) continue;
+        // Update maintenance worksheets
+        const maintenanceContainer = document.getElementById('maintenanceWorksheets');
+        const maintenanceCount = document.getElementById('maintenanceCount');
         
-        const isComplete = progress.correctAnswers === progress.totalQuestions;
-        const statusClass = progress.correctAnswers === 0 ? 'not-started' : 
-                          isComplete ? 'completed' : 'incomplete';
+        if (!maintenanceContainer) {
+          console.error('Maintenance container not found');
+          return;
+        }
         
-        if (isComplete) maintenanceCompleted++;
+        let maintenanceCompleted = 0;
         
-        const worksheetCard = `
-          <div class="worksheet-card ${statusClass}" onclick="openWorksheet('maintenance', ${i})">
-            <div class="worksheet-title">${worksheet.title}</div>
-            <div class="worksheet-description">${worksheet.description}</div>
-            <div class="progress-bar">
-              <div class="progress-fill ${statusClass}" style="width: ${progress.completionPercentage || 0}%"></div>
-            </div>
-            <div class="worksheet-stats">
-              <span>${progress.correctAnswers || 0}/${progress.totalQuestions} questions</span>
-              <span>${progress.completionPercentage || 0}%</span>
-            </div>
-            ${progress.lastUpdated ? `<div class="last-activity">Last updated: ${new Date(progress.lastUpdated).toLocaleString()}</div>` : ''}
-          </div>
-        `;
-        
-        maintenanceContainer.innerHTML += worksheetCard;
+        if (worksheetTracker.worksheets && worksheetTracker.worksheets.maintenance) {
+          maintenanceContainer.innerHTML = worksheetTracker.worksheets.maintenance.map(worksheet => {
+            const progress = allProgress[`maintenance-${worksheet.id}`] || {
+              completedQuestions: 0,
+              totalQuestions: worksheet.totalQuestions,
+              completionPercentage: 0
+            };
+            
+            const isComplete = progress.completedQuestions === progress.totalQuestions;
+            const statusClass = progress.completedQuestions === 0 ? 'not-started' : 
+                              isComplete ? 'completed' : 'incomplete';
+            
+            if (isComplete) maintenanceCompleted++;
+            
+            return `
+              <div class="worksheet-card ${statusClass}" onclick="openWorksheet('maintenance', ${worksheet.id})">
+                <div class="worksheet-title">${worksheet.title}</div>
+                <span class="worksheet-type maintenance">Maintenance</span>
+                <div class="progress-bar">
+                  <div class="progress-fill ${statusClass}" style="width: ${progress.completionPercentage || 0}%"></div>
+                </div>
+                <div class="worksheet-stats">
+                  <span>${progress.completedQuestions || 0}/${progress.totalQuestions} questions</span>
+                  <span>${progress.completionPercentage || 0}%</span>
+                </div>
+                ${progress.lastUpdated ? `<div class="last-activity">Last updated: ${new Date(progress.lastUpdated).toLocaleString()}</div>` : ''}
+              </div>
+            `;
+          }).join('');
+          
+          // Update count if element exists
+          if (maintenanceCount) {
+            maintenanceCount.textContent = `${maintenanceCompleted}/${worksheetTracker.worksheets.maintenance.length}`;
+          }
+        } else {
+          console.error('Worksheets data not available');
+          maintenanceContainer.innerHTML = '<p style="color: #cccccc; text-align: center; padding: 20px;">Worksheets data not available</p>';
+          if (maintenanceCount) {
+            maintenanceCount.textContent = '0/0';
+          }
+        }
+      } catch (error) {
+        console.error('Error updating worksheets display:', error);
       }
-      
-      maintenanceCount.textContent = `${maintenanceCompleted}/12`;
     }
 
     function openWorksheet(type, id) {
@@ -1180,9 +987,18 @@
     }
 
     function loadStudentInfo() {
-      const studentInfo = worksheetTracker.getStudentInfo();
-      document.getElementById('studentName').value = studentInfo.name;
-      document.getElementById('studentId').value = studentInfo.id;
+      try {
+        const studentInfo = worksheetTracker.getStudentInfo();
+        const nameInput = document.getElementById('studentName');
+        const idInput = document.getElementById('studentId');
+        
+        if (nameInput && idInput) {
+          nameInput.value = studentInfo.name || '';
+          idInput.value = studentInfo.id || '';
+        }
+      } catch (error) {
+        console.error('Error loading student info:', error);
+      }
     }
 
     // Student form submission
@@ -1194,15 +1010,17 @@
       worksheetTracker.setStudentInfo(name, id);
       
       // Show success message
-      const saveBtn = document.querySelector('.save-btn');
-      const originalText = saveBtn.textContent;
-      saveBtn.textContent = 'Saved!';
-      saveBtn.style.background = 'var(--accent-color)';
-      
-      setTimeout(() => {
-        saveBtn.textContent = originalText;
-        saveBtn.style.background = '';
-      }, 2000);
+      const saveBtn = document.querySelector('#studentForm .btn-primary');
+      if (saveBtn) {
+        const originalText = saveBtn.textContent;
+        saveBtn.textContent = 'Saved!';
+        saveBtn.style.background = 'var(--accent-color)';
+        
+        setTimeout(() => {
+          saveBtn.textContent = originalText;
+          saveBtn.style.background = '';
+        }, 2000);
+      }
     });
 
     // Export functions
@@ -1324,8 +1142,8 @@
       updateWorksheetsDisplay();
       initializeCharts();
       
-      // Hide the popup
-      hideResetConfirmation();
+      // Hide the reset options
+      hideResetOptions();
       
       // Show success message
       const statusDiv = document.createElement('div');
@@ -1350,34 +1168,6 @@
       updateQuickStats();
       updateWorksheetsDisplay();
     }, 30000);
-
-    // Disable service worker error notifications
-    if ('serviceWorker' in navigator) {
-      // Override console.error to filter out service worker MIME type errors
-      const originalConsoleError = console.error;
-      console.error = function(...args) {
-        const message = args.join(' ');
-        if (message.includes('Service Worker') || message.includes('MIME type') || message.includes('service-worker')) {
-          // Silently ignore service worker related errors
-          return;
-        }
-        originalConsoleError.apply(console, args);
-      };
-
-      // Prevent any service worker error notifications from appearing
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          mutation.addedNodes.forEach(function(node) {
-            if (node.nodeType === 1 && 
-                (node.textContent?.includes('Service Worker Error') || 
-                 node.textContent?.includes('MIME type issue'))) {
-              node.remove();
-            }
-          });
-        });
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-    }
   </script>
 </body>
 </html> 
