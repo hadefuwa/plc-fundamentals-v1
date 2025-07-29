@@ -1,10 +1,19 @@
  
 Name: Maintenance of Closed Loop Systems: Flow 
 Product Range:  Industrial Maintenance 
-Product Code: IM0004 
+Product Code: IM6390 
 Curriculum Code: CP0539 & CP6773
 Power Supply: 24V 
-Unit weight  Packed Specifications Weight: TBC  Volume: TBCLength: 52cm  Gross Weight: TBC Width: 43.5cm 
+Unit weight 
+ 
+Packed Specifications 
+Weight: TBC IM6390
+ 
+Volume: TBC
+Length: 52cm 
+ 
+Gross Weight: TBC 
+Width: 43.5cm 
 Height: 46.1cm 
 Product Description 
 The Industrial Maintenance Closed Loop PID Control System (Model IM0004) is a hands-on industrial training solution designed to teach fault diagnosis, system behaviour analysis, and component-level troubleshooting in a real-world flow control environment.
@@ -36,13 +45,13 @@ Fault Simulation & Troubleshooting
 * Fault diagnosis via HMI IO screen, alarms, and status LEDs
 Practical Exercises & Support
 * 13+ guided worksheets covering each system component and fault type.
-* “Over to You” sections to encourage independent problem-solving.
+* ï¿½Over to Youï¿½ sections to encourage independent problem-solving.
 * Structured fault scenarios reflecting real-world industrial situations.
 * IO diagnostics and LED indicators on PLC and field devices for live troubleshooting
 * Full BOM, wire numbers, and test points included for in-depth exploration.
 Educational Focus
 * Aligned to UK T-Level & BTEC qualifications (Maintenance, Installation & Repair)
-* Designed for Further Education students and apprentices aged 16–18.
+* Designed for Further Education students and apprentices aged 16ï¿½18.
 * Teaches control system integration: sensors, PLC, HMI, actuators.
 * Suitable for classroom teaching, self-guided labs, and assessment
 
@@ -66,28 +75,28 @@ Build competence and confidence in performing system inspections, interpreting v
 
 Worksheets 
 CP0539
-* Worksheet 1 – Closed-Loop Control Systems 
-* Worksheet 2 – Emergency Stops 
-* Worksheet 3 – Status LED 
-* Worksheet 4 – PLC 
-* Worksheet 5 – HMI 
-* Worksheet 6 – Pump 
-* Worksheet 7 – Valve 
-* Worksheet 8 – Float Switch 
-* Worksheet 9 – Proximity Switch 
-* Worksheet 10 – Flow Sensor 
-* Worksheet 11 – Temperature Sensor 
-* Worksheet 12 – Digital Sensors 
-* Worksheet 13 – Analogue Sensors 
-* Worksheet 14 – Faults 
+* Worksheet 1 ï¿½ Closed-Loop Control Systems 
+* Worksheet 2 ï¿½ Emergency Stops 
+* Worksheet 3 ï¿½ Status LED 
+* Worksheet 4 ï¿½ PLC 
+* Worksheet 5 ï¿½ HMI 
+* Worksheet 6 ï¿½ Pump 
+* Worksheet 7 ï¿½ Valve 
+* Worksheet 8 ï¿½ Float Switch 
+* Worksheet 9 ï¿½ Proximity Switch 
+* Worksheet 10 ï¿½ Flow Sensor 
+* Worksheet 11 ï¿½ Temperature Sensor 
+* Worksheet 12 ï¿½ Digital Sensors 
+* Worksheet 13 ï¿½ Analogue Sensors 
+* Worksheet 14 ï¿½ Faults 
 CP6773
 * Fault Scenario 1: Titanium Forging 
 * Fault Scenario 2: Pharmaceutical Plant 
-* Fault Scenario 3: CNC Machines Factory Cooling 
+* IM6390Scenario 3: CNC Machines Factory Cooling 
 * Fault Scenario 4: Marketing 
 * Fault Scenario 5: Potash Mine 
 * Fault Scenario 6: First Day On The Job 
-* Fault Scenario 7: Why’s It Always The Temperature? 
+* Fault Scenario 7: Whyï¿½s It Always The Temperature? 
 * Fault Scenario 8: Settings 
 Packing List
 Essentially the product will be sold as almost one complete tested unit.
@@ -99,47 +108,63 @@ Contents;
 
 Curriculum(s)
 This product comes with two curriculums;
-CP0539 – Industrial Maintenance of Closed Loop SystemsCP6773 - Troubleshooting & Fault-Finding Closed Loop Systems
+CP0539 ï¿½ Industrial Maintenance of Closed Loop Systems
+CP6773 - Troubleshooting & Fault-Finding Closed Loop Systems
+
+
+
 Click here to download curriculum from our Learning Centre  
 
 
 Main Components 
 Main Module 
 
-PLC – Siemens S7-1200 (CPU 1214C)
+PLC ï¿½ Siemens S7-1200 (CPU 1214C)
 * Purpose: Central controller for logic, PID control, safety interlocks, and I/O processing
 * Key Features:
 o 14x Digital Inputs, 10x Digital Outputs (24VDC)
-o 2x Analog Inputs (0–10V)
+o 2x Analog Inputs (0ï¿½10V)
 o Handles PID algorithm for flow regulation.
-o Interfaces with HMI for setpoint, alarms, and diagnosticsAQ Module (Analog Output Module)
-* Purpose: Provides analogue output signals (0–10V or PWM control) to actuators
+o Interfaces with HMI for setpoint, alarms, and diagnostics
+
+AQ Module (Analog Output Module)
+* Purpose: Provides analogue output signals (0ï¿½10V or PWM control) to actuators
 * Key Features:
 o Controls proportional valve and pump via voltage or PWM
 o Enables smooth adjustment of flow rates.
 o Interfaces directly with field devices for closed-loop control
-Unified HMI – Siemens Unified Basic Panel (MTP700)
+
+
+Unified HMI ï¿½ Siemens Unified Basic Panel (MTP700)
 * Purpose: Operator interface for real-time monitoring, fault display, and parameter input
 * Key Features:
 o 7" touch screen for flow setpoint input and system feedback
 o Displays alarms, I/O status, PID values, and temperature cutoffs.
-o Setup page allows editing of temperature cutout limits and viewing system statePump – COMET 24V Immersion Pump
+o Setup page allows editing of temperature cutout limits and viewing system state
+
+Pump ï¿½ COMET 24V Immersion Pump
 * Purpose: Drives water through the flow circuit
 * Key Features:
 o Controlled by analogue signal (via PWM)
 o Variable speed to match flow setpoint.
 o Monitored for conditions like dry running and flow blockage
-Valve – Burkert Proportional Solenoid Valve
+
+
+Valve ï¿½ Burkert Proportional Solenoid Valve
 * Purpose: Fine-tunes water flow based on PID control
 * Key Features:
 o Receives analogue or PWM signal from AQ module.
 o Works with pump to maintain target flow.
-o Includes "deadband" behaviour (opens above 10% demand)Tank – Water Reservoir with Integrated Safety Sensors
+o Includes "deadband" behaviour (opens above 10% demand)
+
+Tank ï¿½ Water Reservoir with Integrated Safety Sensors
 * Purpose: Holds system fluid and houses level and temperature sensors
 * Key Features:
 o High and low float switches for overfill/dry run protection.
 o IFM PT100 RTD sensor for fluid temperature monitoring
-o Proximity switch on lid to detect open/closed state
+o Proximity switch on lid to detect open/closed state
+
+
 
 
 Frequently asked questions 
@@ -149,16 +174,16 @@ Optionally, Siemens TIA Portal (v20 and above recommended) can be used to modify
 Does the kit come with curriculum materials?
 Yes. A full curriculum is included, complete with guided student worksheets and detailed teacher notes, available through the Matrix Learning Centre.
 What age group is this kit aimed at?
-It’s designed for further and higher education students aged 16–20 studying engineering, automation, or maintenance.
+Itï¿½s designed for further and higher education students aged 16ï¿½20 studying engineering, automation, or maintenance.
 How many students can use the kit at once?
-It’s ideal for 1 or 2 students working collaboratively. Two learners can comfortably work side-by-side during practical sessions.
+Itï¿½s ideal for 1 or 2 students working collaboratively. Two learners can comfortably work side-by-side during practical sessions.
 How is the system powered?
 The system uses a 24V DC power supply and comes with UK, EU, and US adapters. No mains wiring is required.
 Does the system need mains water or drainage?
 No. The system operates using a closed-loop water circuit with a built-in tank, no external plumbing is required.
 To run the system, simply fill the tank with clean water up to the marked minimum level.
 Can other fluids be used in the system instead of water?
-No. The system is designed specifically for use with clean water only. Using other fluids may damage internal components, affect sensor readings, or void the warranty.
+No. The system is designed specifically for use with clean water only. Using other fluids may damage internal IM6390ents, affect sensor readings, or void the warranty.
 Is post-use maintenance required?
 Very little. Just check water level and clarity occasionally. 
 
@@ -185,14 +210,14 @@ The product includes a standard 12-month warranty with full technical support fr
 Tender Specification 
 Matrix Technology Solutions Ltd shall supply the Industrial Maintenance Closed Loop PID Control System (Model IM0004) with the following features, capabilities, and performance assurances:
 Hardware Specification
-* The system shall include an integrated closed-loop water tank with a capacity of approximately 3.5–4.5 litres, suitable for desk-based educational environments.
+* The system shall include an integrated closed-loop water tank with a capacity of approximately 3.5ï¿½4.5 litres, suitable for desk-based educational environments.
 * The system shall be constructed using a powder-coated steel frame with corrosion-resistant plumbing and transparent acrylic flow and level indicators.
 * The system shall feature quick-release mounting points and push-in connectors to allow easy maintenance and compact storage.
 * The system shall include a 24V DC immersion pump with variable speed control via PWM or analogue voltage.
-* The system shall include a Burkert proportional solenoid valve, compatible with 0–10V control signals.
+* The system shall include a Burkert proportional solenoid valve, compatible with 0ï¿½10V control signals.
 * The system shall include the following sensor set:
 o A turbine-type flow sensor providing pulse or PWM output
-o An IFM PT100 RTD temperature sensor with a 4–20mA transmitter
+o An IFM PT100 RTD temperature sensor with a 4ï¿½20mA transmitter
 o Dual float switches for high- and low-level detection to prevent overfill and dry-run conditions
 o An inductive proximity switch for tank lid position detection
 * The system shall incorporate a simulated dual-channel emergency stop, reset button, and multicolour status LEDs (green, amber, red) for system state indication.
@@ -209,7 +234,7 @@ Performance Expectations
 * The system shall display real-time flow readings on the HMI and control pump and valve outputs proportionally to meet setpoint demands.
 * The system shall support eight software-injected faults and a range of hardware faults via wire removal, to simulate real-world diagnostic challenges.
 * The system shall issue instantaneous alarms and visual fault indicators via the HMI and status LED stack.
-Software & Curriculum
+Software & CurriculumIM6390
 * The system shall be delivered with preloaded Siemens PLC and HMI programs for immediate training use.
 * The system shall allow users to edit and expand system logic via Siemens TIA Portal (project files available on request).
 * The system shall be accompanied by 13+ guided worksheets, aligned with UK T-Level and BTEC qualifications, covering:
@@ -228,7 +253,7 @@ o Siemens PLC and HMI
 o All internal wiring and sensors preinstalled
 o Tray-based storage for cables and accessories
 o Global 24V DC power supply
-* Each kit shall be suitable for use by 1–2 students simultaneously.
+* Each kit shall be suitable for use by 1ï¿½2 students simultaneously.
 * The system shall be factory tested and ready to operate out of the box.
  
 
@@ -264,10 +289,10 @@ A red system LED indicates a fault or simulated safety event. The system should 
 Standards Compliance
 This system is designed for educational and training use and incorporates industrial-grade components and wiring practices. While it follows best practices in system layout and electrical safety, it is not intended for use in operational industrial environments.
 The system aligns with the following standards where applicable:
-* EN 60204-1 – Electrical equipment of machines (informative compliance in wiring and protection practices)
-* EN 61010-1 – Safety requirements for electrical equipment for measurement, control, and laboratory use
-* Low Voltage Directive 2014/35/EU – Applicable to included power supply and components
-* RoHS Directive 2011/65/EU – Restriction of hazardous substances compliance for electronic components
+* EN 60204-1 ï¿½ Electrical equipment of machines (informative compliance in wiring and protection practices)
+* EN 61010-1 ï¿½ Safety requirements for electrical equipment for measurement, control, and laboratory use
+* Low Voltage Directive 2014/35/EU ï¿½ Applicable to included power supply and components
+* RoHS Directive 2011/65/EU ï¿½ Restriction of hazardous substances compliance for electronic components
 Note: This product is intended for educational use only and does not fall under the full scope of the Machinery Directive 2006/42/EC. The emergency stop (E-stop) function is simulated via PLC logic and is not implemented using a safety-rated relay or redundant hardware. As such, the E-stop is not compliant with BS EN 60204-1 Clause 9.2.2 and must not be relied upon for industrial safety purposes. 
 
 

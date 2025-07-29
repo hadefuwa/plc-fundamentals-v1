@@ -1,4 +1,4 @@
-# 🏭 Closed Loop Maintenance Training System
+# 🏭 PLC Fundamentals Training System
 
 > **Inspiring the next generation of Engineers**
 

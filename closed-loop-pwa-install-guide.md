@@ -1,6 +1,6 @@
-# Installing the Closed Loop Maintenance App
+# Installing the PLC Fundamentals App
 
-This guide will help you install the Closed Loop Maintenance App on your device, making it easily accessible from your desktop or home screen - just like any other application!
+This guide will help you install the PLC Fundamentals App on your device, making it easily accessible from your desktop or home screen - just like any other application!
 
 ## 💻 Installing on Windows/Mac/Linux (Desktop)
 
@@ -70,7 +70,7 @@ To remove the app:
 
 ### On Windows:
 - Go to Settings > Apps > Apps & features
-- Find "Closed Loop Maintenance App"
+- Find "PLC Fundamentals App"
 - Click "Uninstall"
 
 ### On Mac:
