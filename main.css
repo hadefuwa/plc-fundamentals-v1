@@ -52,6 +52,25 @@ body {
     .main-container {
         height: calc(100vh - 80px);
     }
+    
+    /* Fix scrolling for worksheet-box in PWA mode */
+    .worksheet-box {
+        max-height: calc(100vh - 120px); /* Account for nav and padding */
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+    
+    /* Ensure worksheet content can scroll properly */
+    .worksheet-content {
+        overflow: visible;
+    }
+    
+    /* Make sure the body allows scrolling */
+    html, body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 }
 
 /* Theme Classes */
@@ -2579,6 +2598,9 @@ h1 {
   padding: 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   position: relative;
+  /* Ensure proper scrolling behavior */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .worksheet-box::before {
